@@ -56,6 +56,13 @@ elif sys.argv[1] == 'full':
             in_file.close()
 
             in_file = open(daypath + f'/solution.py','w')
-            in_file.write("inp = open('./input.txt').read().split('\\n')")
+            in_file.write(f"inp = open('{daypath}/input.txt').read().split('\\n')")
+            in_file.close()
+
+elif sys.argv[1] == 'adjust':
+    for year in range(2015,2021):
+        for day in range(1,26):
+            in_file = open(f'{year}/day{day:02}/solution.py','w')
+            in_file.write(f"inp = open('{year}/day{day:02}/input.txt').read().split('\\n')")
             in_file.close()
 

@@ -1,6 +1,6 @@
-# Advent of Code
+# :christmas_tree: Advent of Code
 
-The Repo Containing all my solutions to the [Advent of Code](adventofcode.com) challenges.
+The Repo Containing all my solutions to the [Advent of Code](https://adventofcode.com/) challenges.
 Listed below are the days I have currently solved.
 
 ## Highlights

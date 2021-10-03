@@ -1,1 +1,1 @@
-inp = open('./input.txt').read().split('\n')
+inp = open('2016/day19/input.txt').read().split('\n')
