@@ -15,7 +15,7 @@ Listed below are the days I have currently solved.
 | Day 4  | x    |      |      |      |      |      |      |
 | Day 5  | x    |      |      |      |      |      |      |
 | Day 6  | x    |      |      |      |      |      |      |
-| Day 7  |      |      |      |      |      |      |      |
+| Day 7  | x    |      |      |      |      |      |      |
 | Day 8  |      |      |      |      |      |      |      |
 | Day 9  |      |      |      |      |      |      |      |
 | Day 10 |      |      |      |      |      |      |      |
