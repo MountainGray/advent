@@ -10,7 +10,7 @@ Listed below are the days I have currently solved.
 |        |    2015    |    2016    | 2017 | 2018 | 2019 |    2020*   | 2021 |
 | ------ |    ----    |    ----    | ---- | ---- | ---- |    ----    | ---- |
 | Day 1  |:star::star:|:star::star:|      |      |      |:star::star:|      |
-| Day 2  |:star::star:|            |      |      |      |:star::star:|      |
+| Day 2  |:star::star:|:star:      |      |      |      |:star::star:|      |
 | Day 3  |:star::star:|            |      |      |      |:star::star:|      |
 | Day 4  |:star::star:|            |      |      |      |:star::star:|      |
 | Day 5  |:star::star:|            |      |      |      |:star::star:|      |
