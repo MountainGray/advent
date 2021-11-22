@@ -38,3 +38,6 @@ for direction in inp:
             cord -= 1
         elif d == "D" and cord.imag > -1:
             cord -= 1j
+
+def valid(point):
+    if(point.)
