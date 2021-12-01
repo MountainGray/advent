@@ -6,6 +6,7 @@ Listed below are the days I have currently solved.
 ## Advent 2021 is currently live
 
 Solutions may not be polished yet.
+I am currently solving them in Python for speed, then julia for fun
 
 ## Highlights
 
