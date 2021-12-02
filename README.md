@@ -6,7 +6,7 @@ Listed below are the days I have currently solved.
 ## Advent 2021 is currently live
 
 Solutions may not be polished yet.
-I am currently solving them in Python for speed, then julia for fun
+I am currently solving them in Python for speed, then julia/go/javascript/elixr for fun
 
 ## Highlights
 
@@ -15,7 +15,7 @@ I am currently solving them in Python for speed, then julia for fun
 |        |    2015    |    2016    |    2017    |    2018    |    2019    |    2020*   |    2021    |
 | ------ |    ----    |    ----    |    ----    |    ----    |    ----    |    ----    |    ----    |
 | Day 1  |:star::star:|:star::star:|            |            |            |:star::star:|:star::star:|
-| Day 2  |:star::star:|:star:      |            |            |            |:star::star:|            |
+| Day 2  |:star::star:|:star:      |            |            |            |:star::star:|:star::star:|
 | Day 3  |:star::star:|            |            |            |            |:star::star:|            |
 | Day 4  |:star::star:|            |            |            |            |:star::star:|            |
 | Day 5  |:star::star:|            |            |            |            |:star::star:|            |
