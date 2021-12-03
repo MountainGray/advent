@@ -12,3 +12,5 @@ daypath = f'{year}/day{day:02}'
 in_file = open(f'{year}/day{day:02}/input.txt','w')
 in_file.write(resp.text[:-1]) # get rid of newline at eof
 in_file.close()
+in_file = open(f'{year}/day{day:02}/solution.py','w')
+in_file.write(f"inp = open('2021/day{day:02}/input.txt').read().split('\\n')")

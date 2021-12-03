@@ -1,5 +1,5 @@
 inp = open(f->read(f, String),"2021/day01/input.txt","r")
-letnums = [parse(Int, x) for x in split(inp, "\n")]
+letnums = map(f-> parse(Int,f), split(inp,"\n"))
 total = 0
 for i in range(1,length = length(letnums) -1)
     if letnums[i]<letnums[i+1]
