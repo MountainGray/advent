@@ -16,7 +16,7 @@ I am currently solving them in Python for speed, then julia/go/javascript/elixr 
 | ------ |    ----    |    ----    |    ----    |    ----    |    ----    |    ----    |    ----    |
 | Day 1  |:star::star:|:star::star:|            |            |            |:star::star:|:star::star:|
 | Day 2  |:star::star:|:star:      |            |            |            |:star::star:|:star::star:|
-| Day 3  |:star::star:|            |            |            |            |:star::star:|            |
+| Day 3  |:star::star:|            |            |            |            |:star::star:|:star::star:|
 | Day 4  |:star::star:|            |            |            |            |:star::star:|            |
 | Day 5  |:star::star:|            |            |            |            |:star::star:|            |
 | Day 6  |:star::star:|            |            |            |            |:star::star:|            |
