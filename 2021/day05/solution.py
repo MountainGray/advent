@@ -1,56 +1,10 @@
 inp = open("2021/day05/input.txt").read().split("\n")
-pipes = [[pair for pair in line.split(" -> ")] for line in inp]
-points = {}
-for pipe in pipes:
-    x1, y1 = map(int ,pipe[0].split(","))
-    x2, y2 = map(int, pipe[1].split(","))
-    if x1 == x2:
-        if y1 < y2:
-            for i in range(y1, y2+1):
-                if (x1, i) not in points:
-                    points[(x1, i)] = 0
-                points[(x1, i)] += 1
-        else:
-            for i in range(y2, y1+1):
-                if (x1, i) not in points:
-                    points[(x1, i)] = 0
-                points[(x1, i)] += 1
-    elif y1 == y2:
-        if x1 < x2:
-            for i in range(x1, x2+1):
-                if (i, y1) not in points:
-                    points[(i, y1)] = 0
-                points[(i, y1)] += 1
-        else:
-            for i in range(x2, x1+1):
-                if (i, y1) not in points:
-                    points[(i, y1)] = 0
-                points[(i, y1)] += 1
-    else:
-        if x1 < x2 and y1 < y2:
-            for i in range(x2-x1 + 1):
-                if (x1+i, y1+i) not in points:
-                    points[(x1+i, y1+i)] = 0
-                points[(x1+i, y1+i)] += 1
-        if x1 > x2 and y1 < y2:
-            for i in range(x1-x2+1):
-                if (x1-i, y1+i) not in points:
-                    points[(x1-i, y1+i)] = 0
-                points[(x1-i, y1+i)] += 1
-        if x1 < x2 and y1 > y2:
-            for i in range(y1-y2+1):
-                if (x1+i, y1-i) not in points:
-                    points[(x1+i, y1-i)] = 0
-                points[(x1+i, y1-i)] += 1
-        if x1 > x2 and y1 > y2:
-            for i in range(y1-y2+1):
-                if (x1-i, y1-i) not in points:
-                    points[(x1-i, y1-i)] = 0
-                points[(x1-i, y1-i)] += 1
-
-total = 0
-for x in points.values():
-    if x >= 2:
-        total += 1
-
+pipes = [[int(num) for pair in line.split(" -> ") for num in pair.split(",")] for line in inp]
+points = [[0 for _ in range(1000)] for _ in range(1000)]
+for x1, y1, x2, y2 in pipes:
+    for i in range(max(abs(x1 - x2),abs(y1-y2)) + 1):
+        dx = 1 if  x1 < x2 else (-1 if x1 > x2 else 0)
+        dy = 1 if  y1 < y2 else (-1 if y1 > y2 else 0)
+        points[x1 + i * dx][y1 + i*dy] += 1
+total = sum(map(lambda x: x > 1, [x for row in points for x in row]))
 print(total)
