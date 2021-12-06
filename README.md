@@ -40,4 +40,4 @@ I am currently solving them in Python for speed, then julia/go/javascript/elixr 
 | Day 24 |            |            |            |            |            |:star::star:|            |
 | Day 25 |            |            |            |            |            |:star:      |            |
 
-    * Currently fixing up 2020 solutions from my first attempt while I was first learning python
+    * Currently fixing up 2020 solutions from my first attempt while I was first learning python. (up to day 6 reworkeed)
