@@ -7,12 +7,11 @@ while True:
         for j in range(len(squid[0])):
             squid[i][j] +=1
     changed = True
-
     while changed:
         changed = False
         for i in range(len(squid)):
                 for j in range(len(squid[0])):
-                    if squid[i][j] >= 10:
+                    if squid[i][j] > 9:
                         squid[i][j] = 0
                         changed = True
                         total += 1
@@ -21,17 +20,17 @@ while True:
                                 if i+k >= 0 and i+k < len(squid) and j+l >= 0 and j+l < len(squid[0]):
                                     if squid[i+k][j+l] != 0:
                                         squid[i+k][j+l] +=1
+    p += 1
+    if p == 100:
+        print("P1:",total)
     sync = True
     for i in range(len(squid)):
         for j in range(len(squid[0])):
-            if squid[i][j] != -1:
+            if squid[i][j] != 0:
                 sync = False
     if sync:
-        print(p+1)
+        print("P2:",p)
         break
-                                    
-    p += 1
     
-print(total)
 
 
