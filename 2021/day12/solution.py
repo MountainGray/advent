@@ -8,22 +8,18 @@ for line in inp:
     connections[a].append(b)
     connections[b].append(a)
 
-def findpath(position, path, double):
+def findpath(position, path, double, doubled):
     if position == "end":
         return 1
     below = 0
     for next in connections[position]:
-        if next not in path or next.isupper() or (double and next.islower() and not doublelittle(path) and not next == "start"):
-            np = path + [next]
-            below += findpath(next, np, double)
+        if next not in path or next.isupper() or (double and next.islower() and not doubled and not next == "start"):
+            if next.islower() and next in path:
+                below += findpath(next, path + [next], double, True)
+            else:
+                below += findpath(next, path + [next], double, doubled)
+            doubled = False
     return below
 
-def doublelittle(list):
-    ss = set(list)
-    for i in ss:
-        if i.islower() and list.count(i) == 2:
-            return True
-    return False
-
-print("P1:",findpath("start", ['start'] , False))
-print("P2:",findpath("start", ['start'] , True))
+print("P1:",findpath("start", ['start'] , False , False))
+print("P2:",findpath("start", ['start'] , True, False))
