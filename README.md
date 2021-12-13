@@ -1,12 +1,8 @@
 # :christmas_tree: Advent of Code
 
-The Repo Containing all my solutions to the [Advent of Code](https://adventofcode.com/) challenges I have attempted.
-Listed below are the days I have currently solved.
+**Advent 2021 is currently live!!**
 
-## Advent 2021 is currently live
-
-Solutions may not be polished yet.
-I am currently solving them in Python for speed, then julia/go/javascript/elixr for fun
+This repository contains my solutions to problems from [Advent of Code](https://adventofcode.com/)
 
 ## Highlights
 
@@ -17,16 +13,16 @@ I am currently solving them in Python for speed, then julia/go/javascript/elixr 
 | Day 1  |:star::star:|:star::star:|            |            |            |:star::star:|:star::star:|
 | Day 2  |:star::star:|:star:      |            |            |            |:star::star:|:star::star:|
 | Day 3  |:star::star:|            |            |            |            |:star::star:|:star::star:|
-| Day 4  |:star::star:|            |            |            |            |:star::star:|            |
-| Day 5  |:star::star:|            |            |            |            |:star::star:|            |
-| Day 6  |:star::star:|            |            |            |            |:star::star:|            |
-| Day 7  |:star::star:|            |            |            |            |:star::star:|            |
-| Day 8  |            |            |            |            |            |:star::star:|            |
-| Day 9  |            |            |            |            |            |:star::star:|            |
-| Day 10 |            |            |            |            |            |:star::star:|            |
-| Day 11 |            |            |            |            |            |:star::star:|            |
-| Day 12 |            |            |            |            |            |:star::star:|            |
-| Day 13 |            |            |            |            |            |:star::star:|            |
+| Day 4  |:star::star:|            |            |            |            |:star::star:|:star::star:|
+| Day 5  |:star::star:|            |            |            |            |:star::star:|:star::star:|
+| Day 6  |:star::star:|            |            |            |            |:star::star:|:star::star:|
+| Day 7  |:star::star:|            |            |            |            |:star::star:|:star::star:|
+| Day 8  |            |            |            |            |            |:star::star:|:star::star:|
+| Day 9  |            |            |            |            |            |:star::star:|:star::star:|
+| Day 10 |            |            |            |            |            |:star::star:|:star::star:|
+| Day 11 |            |            |            |            |            |:star::star:|:star::star:|
+| Day 12 |            |            |            |            |            |:star::star:|:star::star:|
+| Day 13 |            |            |            |            |            |:star::star:|:star::star:|
 | Day 14 |            |            |            |            |            |:star::star:|            |
 | Day 15 |            |            |            |            |            |:star::star:|            |
 | Day 16 |            |            |            |            |            |:star::star:|            |
@@ -40,4 +36,16 @@ I am currently solving them in Python for speed, then julia/go/javascript/elixr 
 | Day 24 |            |            |            |            |            |:star::star:|            |
 | Day 25 |            |            |            |            |            |:star:      |            |
 
-    * Currently fixing up 2020 solutions from my first attempt while I was first learning python. (up to day 6 reworkeed)
+## Year Reviews
+
+### 2021
+
+```Currently active!```
+
+### 2020
+
+```I will be fixing up my 2020 solutions from my first attempt. I was just learning python when i did these solutions and some of them are quite messy. (up to day 6 reworked)```
+
+### 2015
+
+```Did a few days to practice for 2021, will finish after this year's event is over```
