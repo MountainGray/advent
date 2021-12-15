@@ -13,8 +13,8 @@ def findpath(position, path, double, doubled):
         return 1
     below = 0
     for next in connections[position]:
-        if next not in path or next.isupper() or (double and next.islower() and not doubled and not next == "start"):
-            if next.islower() and next in path:
+        if next not in path or next.isupper() or double:
+            if next.islower() and next in path and double and not doubled:
                 below += findpath(next, path + [next], double, True)
             else:
                 below += findpath(next, path + [next], double, doubled)
