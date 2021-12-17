@@ -1,31 +1,6 @@
-inp = open('2021/day16/input.txt').read()
-htb = {
-    "0": "0000",
-    "1": "0001",
-    "2": "0010",
-    "3": "0011",
-    "4": "0100",
-    "5": "0101",
-    "6": "0110",
-    "7": "0111",
-    "8": "1000",
-    "9": "1001",
-    "A": "1010",
-    "B": "1011",
-    "C": "1100",
-    "D": "1101",
-    "E": "1110",
-    "F": "1111",
-}
-ns = []
-for char in inp:
-    ns.append(htb[char])
-
-ns = "".join(ns)
-vn = []
+inp = bin(int('1' + open("2021/day16/inp.txt").read(),16))[3:]  
 def parse_packet(packet):
     ver = int(packet[:3],2)
-    vn.append(ver)
     typ = int(packet[3:6],2)
     if typ ==4:
         i = 6
@@ -37,7 +12,7 @@ def parse_packet(packet):
                 break
             i+=5
         lit = int("".join(lit),2)
-        return lit, i+5
+        return lit, i+5, ver
     else:
         vals = []
         lti = packet[6]
@@ -46,8 +21,9 @@ def parse_packet(packet):
             total_length_in_bits = int(packet[7:7+section],2)
             i=0
             while i <total_length_in_bits:
-                val, idx = parse_packet(packet[22+i:])
+                val, idx, vdx= parse_packet(packet[22+i:])
                 i+=idx
+                ver+=vdx
                 vals.append(val)
             return_len = 22+i
 
@@ -56,47 +32,22 @@ def parse_packet(packet):
             num_subpackets = int(packet[7:7+section],2)
             i = 0
             for _ in range(num_subpackets):
-                val, idx = parse_packet(packet[18+i:])
+                val, idx, vdx = parse_packet(packet[18+i:])
                 i+=idx
+                ver += vdx
                 vals.append(val)
-            
             return_len = 18+i
         
-        if typ == 0:
-            return sum(vals), return_len
+        if typ == 0: return_val = sum(vals)
         elif typ == 1:
-            start = vals[0]
-            for i in range(1, len(vals)):
-                start *=vals[i]
-            return start, return_len
-        elif typ == 2:
-            return min(vals), return_len
-        elif typ == 3:
-            return max(vals), return_len
-        elif typ == 5:
-            if vals[0]>vals[1]:
-                return 1, return_len
-            else:
-                return 0, return_len
-        elif typ == 6:
-            if vals[0]<vals[1]:
-                return 1, return_len
-            else:
-                return 0, return_len
-        elif typ == 7:
-            if vals[0]==vals[1]:
-                return 1, return_len
-            else:
-                return 0, return_len
-
-
-
-
-        
-
-
-
-
-print(vn)
-print(sum(vn))
-print(parse_packet(ns))
+            start = 1
+            for i in range(len(vals)):
+                start *= vals[i]
+            return_val = start
+        elif typ == 2: return_val = min(vals)
+        elif typ == 3: return_val = max(vals)
+        elif typ == 5: return_val = 1 if vals[0]>vals[1] else 0
+        elif typ == 6: return_val = 1 if vals[0]<vals[1] else 0
+        else: return_val = 1 if vals[0]==vals[1] else 0
+        return return_val, return_len, ver
+print(parse_packet(inp)[::-2])
