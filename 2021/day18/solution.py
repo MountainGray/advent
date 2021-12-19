@@ -82,21 +82,6 @@ class Node:
                         self.a +=a
                 return 1, None, b
         return 0, None, None
-            
-
-c = []
-for x in b:
-    ne = Node(x,0)
-    c.append(ne)
-#base = Node(b[0],0) 
-#while True:
-    #t,_,_ = base.update()
-    #print(base)
-    #if t==0:
-        #q =base.update_spl()
-        #if q==0:
-            #break
-
 comp = b[0]
 for node in b[1:]:
     print(comp)
@@ -129,4 +114,5 @@ for i in range(len(b)):
             mx = comp.sumer() if comp.sumer()>mx else mx
 
 print(mx)
+
             
