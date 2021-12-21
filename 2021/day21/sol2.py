@@ -1,8 +1,6 @@
 inp = open('2021/day21/input.txt').read().split('\n')
-import time 
-start = time.time()
-p1 = int(inp[0][-1:])
-p2 = int(inp[1][-1:])
+p1 = 5
+p2 = 8
 p1score  = 0
 p2score  = 0
 
@@ -21,8 +19,12 @@ memo = {}
 def getwinner(p1,p2,p1score, p2score, turn, dieroll):
     if turn == 0:
         p1 += dieroll
-        p1%=10
-        p1score += p1 + 1
+        if p1%10 == 0:
+            p1score += 10
+            p1 = 10
+        else:
+            p1score += p1%10
+            p1 = p1%10
         if p1score >=21:
             return [1,0]
         else:
@@ -46,13 +48,10 @@ def getwinner(p1,p2,p1score, p2score, turn, dieroll):
         else:
             outcome = [0,0]
             for roll, mu in optim:
-                if (p1,p2,p1score, p2score, 0, roll) in memo:
-                    outcome[0] += memo[(p1,p2,p1score, p2score, 0, roll)][0]*mu
-                    outcome[1] += memo[(p1,p2,p1score, p2score, 0, roll)][1]*mu
-                else:
+                if (p1,p2,p1score, p2score, 0, roll) not in memo:
                     memo[(p1,p2,p1score, p2score, 0, roll)] = getwinner(p1,p2,p1score, p2score, 0, roll)
-                    outcome[0] += memo[(p1,p2,p1score, p2score, 0, roll)][0]*mu
-                    outcome[1] += memo[(p1,p2,p1score, p2score, 0, roll)][1]*mu
+                outcome[0] += memo[(p1,p2,p1score, p2score, 0, roll)][0]*mu
+                outcome[1] += memo[(p1,p2,p1score, p2score, 0, roll)][1]*mu
             return outcome
 
 total = [0,0]
@@ -61,4 +60,3 @@ for roll, mul in optim:
     total[0] += x * mul
     total[1] += y * mul
 print(total)
-print(time.time()-start)
