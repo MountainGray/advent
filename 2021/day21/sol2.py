@@ -15,6 +15,8 @@ for i in range(1,4):
 optim = []
 for i in range(3,10):
     optim.append([i, possrolls.count(i)])
+
+memo = {}
     
 def getwinner(p1,p2,p1score, p2score, turn, dieroll):
     if turn == 0:
@@ -26,9 +28,10 @@ def getwinner(p1,p2,p1score, p2score, turn, dieroll):
         else:
             outcome = [0,0]
             for roll, mu in optim:
-                one, two = getwinner(p1,p2,p1score, p2score, 1, roll)
-                outcome[0] += one * mu
-                outcome[1] += two * mu
+                if (p1,p2,p1score, p2score, 1, roll) not in memo:
+                    memo[(p1,p2,p1score, p2score, 1, roll)] = getwinner(p1,p2,p1score, p2score, 1, roll)
+                outcome[0] += memo[(p1,p2,p1score, p2score, 1, roll)][0]*mu
+                outcome[1] += memo[(p1,p2,p1score, p2score, 1, roll)][1]*mu
             return outcome
     else:
         p2 += dieroll
@@ -43,11 +46,14 @@ def getwinner(p1,p2,p1score, p2score, turn, dieroll):
         else:
             outcome = [0,0]
             for roll, mu in optim:
-                one, two = getwinner(p1,p2,p1score, p2score, 0, roll)
-                outcome[0] += one * mu
-                outcome[1] += two * mu
+                if (p1,p2,p1score, p2score, 0, roll) in memo:
+                    outcome[0] += memo[(p1,p2,p1score, p2score, 0, roll)][0]*mu
+                    outcome[1] += memo[(p1,p2,p1score, p2score, 0, roll)][1]*mu
+                else:
+                    memo[(p1,p2,p1score, p2score, 0, roll)] = getwinner(p1,p2,p1score, p2score, 0, roll)
+                    outcome[0] += memo[(p1,p2,p1score, p2score, 0, roll)][0]*mu
+                    outcome[1] += memo[(p1,p2,p1score, p2score, 0, roll)][1]*mu
             return outcome
-
 
 total = [0,0]
 for roll, mul in optim:
