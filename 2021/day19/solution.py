@@ -30,9 +30,9 @@ for chunk in inp:
     nodes.append(scanr(node,points))
 
 def match_list(a:scanr,b:scanr):
-    for _ in range(3):
-        for _ in range(4):
-            for _ in range(4):
+    for i in range(3):
+        for j in range(4):
+            for k in range(4):
                 for pa in a.points:
                     for pb in b.points:
                         match = 0
