@@ -23,18 +23,18 @@ This repository contains my solutions to problems from [Advent of Code](https://
 | Day 11 |            |            |            |            |            |:star::star:|:star::star:|
 | Day 12 |            |            |            |            |            |:star::star:|:star::star:|
 | Day 13 |            |            |            |            |            |:star::star:|:star::star:|
-| Day 14 |            |            |            |            |            |:star::star:|            |
-| Day 15 |            |            |            |            |            |:star::star:|            |
-| Day 16 |            |            |            |            |            |:star::star:|            |
-| Day 17 |            |            |            |            |            |:star::star:|            |
-| Day 18 |            |            |            |            |            |:star::star:|            |
-| Day 19 |            |            |            |            |            |            |            |
-| Day 20 |            |            |            |            |            |:star:      |            |
-| Day 21 |            |            |            |            |            |:star::star:|            |
-| Day 22 |            |            |            |            |            |:star::star:|            |
-| Day 23 |            |            |            |            |            |:star::star:|            |
-| Day 24 |            |            |            |            |            |:star::star:|            |
-| Day 25 |            |            |            |            |            |:star:      |            |
+| Day 14 |            |            |            |            |            |:star::star:|:star::star:|
+| Day 15 |            |            |            |            |            |:star::star:|:star::star:|
+| Day 16 |            |            |            |            |            |:star::star:|:star::star:|
+| Day 17 |            |            |            |            |            |:star::star:|:star::star:|
+| Day 18 |            |            |            |            |            |:star::star:|:star::star:|
+| Day 19 |            |            |            |            |            |            |:star::star:|
+| Day 20 |            |            |            |            |            |:star:      |:star::star:|
+| Day 21 |            |            |            |            |            |:star::star:|:star::star:|
+| Day 22 |            |            |            |            |            |:star::star:|:star::star:|
+| Day 23 |            |            |            |            |            |:star::star:|:star::star:|
+| Day 24 |            |            |            |            |            |:star::star:|:star::star:|
+| Day 25 |            |            |            |            |            |:star:      |:star::star:|
 
 ## Year Reviews
 
