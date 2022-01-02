@@ -1,1 +1,7 @@
 credentials.txt
+
+# Added by cargo
+
+*/target
+cargo.lock
+.env

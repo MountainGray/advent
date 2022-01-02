@@ -36,6 +36,14 @@ This repository contains my solutions to problems from [Advent of Code](https://
 | Day 24 |            |            |            |            |            |:star::star:|:star::star:|
 | Day 25 |            |            |            |            |            |:star:      |:star::star:|
 
+## Python
+
+## Rust
+
+### setup
+
+to run my rust solutions you must add 
+
 ## Year Reviews
 
 ### 2021
