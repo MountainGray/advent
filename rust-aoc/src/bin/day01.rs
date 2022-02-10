@@ -2,7 +2,8 @@ use rustaoc::load_input_str;
 
 fn main() {
     let input = load_input_str(2019, 1);
-    let inputvec = input.split("\n").map(|x| x.parse::<u32>().unwrap());
+    let inputvec = input.split("\r\n").map(|x| x.parse::<u32>().unwrap());
+    println!("{:?}",inputvec);
     let mut total1 = 0;
     let mut total2 = 0;
     for inp in inputvec {

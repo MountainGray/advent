@@ -1,7 +1,7 @@
 use std::fs;
 
 pub fn load_input_str(year: i32, day: i32)-> String{
-    let filepath = format!("input/{}{:02}.txt",year,day);
+    let filepath = format!("../input/{}{:02}.txt",year,day);
     let input = fs::read_to_string(filepath)
         .expect("error reading file");
     input
