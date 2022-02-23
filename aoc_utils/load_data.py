@@ -36,8 +36,12 @@ def load_input(year,day, delimiter="\n", sub_delimiter=None, map_func=None):
 
 # for cli use
 
-def make_input_folders(year_start, year_end):
-    for year in range(year_start, year_end + 1):
+# creates input directories up to the given year
+def make_input_folders():
+    import time
+    year_start = 2015
+    year_current = time.localtime().tm_year
+    for year in range(year_start, year_current+ 1):
         for day in range(1, 25):
             path = f"input/{year}/day{day}"
             if not os.path.exists(path):
