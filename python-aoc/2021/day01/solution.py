@@ -1,3 +1,5 @@
+
+
 inp = [int(x) for x in open("2021/day01/input.txt").read().split("\n")]
 total = 0
 for x in range(1, len(inp) - 1):

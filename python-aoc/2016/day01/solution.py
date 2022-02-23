@@ -1,4 +1,6 @@
+from python_aoc.load_data import load
 directions = open('2016/day01/input.txt').read().split(', ')
+directions = load(2016, 1)
 
 #p1
 orient = 0+1j
