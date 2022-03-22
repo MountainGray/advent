@@ -1,29 +1,37 @@
+from advent import get_input, solution_timer
 import hashlib
-inp = open('2015/day04/input.txt').read().split('\n')
 
-# Need to actually implement md5 hash function :(
+# Possible improvements?
+
 
 def md5_imported(s):
-    return hashlib.md5(s.encode('utf-8')).hexdigest()
-# Part 1
-def md5_hash(key):
+    return hashlib.md5(s.encode("utf-8")).hexdigest()
+
+
+@solution_timer(2015, 4, 1)
+def part_one(input_data: list[str]):
+    secret_key = input_data[0]
     x = 0
     while True:
-        hsh = md5_imported(key+str(x))
-        if hsh[:5] == '00000': 
+        hsh = md5_imported(secret_key + str(x))
+        if hsh[:5] == "00000":
             return x
-        else:
-            x += 1
+        x += 1
 
-print("P1:",md5_hash(inp[0]))
-# Part 2    
-def md5_p2(key):
+
+@solution_timer(2015, 4, 2)
+def part_two(input_data: list[str]):
+    secret_key = input_data[0]
+
     x = 0
     while True:
-        hsh = md5_imported(key+str(x))
-        if hsh[:6] == '000000': 
+        hsh = md5_imported(secret_key + str(x))
+        if hsh[:6] == "000000":
             return x
-        else:
-            x += 1
+        x += 1
 
-print("P2:",md5_p2(inp[0]))
+
+if __name__ == "__main__":
+    data = get_input(2015, 4)
+    part_one(data)
+    part_two(data)
