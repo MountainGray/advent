@@ -1,57 +1,59 @@
-inp = open("2015/day03/input.txt").read().split("\n")
+from advent.load_input import get_input
+from advent.timer import solution_timer
 
 
-houses = {}
-pos = (0, 0)
-houses[pos] = 1
-# Part 1
-for dr in inp[0]:
-    if dr == "^":
-        pos = (pos[0], pos[1] + 1)
-    elif dr == "v":
-        pos = (pos[0], pos[1] - 1)
-    elif dr == ">":
-        pos = (pos[0] + 1, pos[1])
-    elif dr == "<":
-        pos = (pos[0] - 1, pos[1])
-    houses[pos] = houses.get(pos, 0) + 1
-
-print("P1:", len(houses))
-
-# Part 2
-santa = (0, 0)
-robo = (0, 0)
-houses = {}
-houses[santa] = 1
-for i, dr in enumerate(inp[0]):
-    if i % 2 == 0:
+@solution_timer(2015, 3, 1)
+def part_one(input_data: list[str]):
+    directions = input_data[0]
+    houses = {0+0j}
+    pos = 0+0j
+    # Part 1
+    for dr in directions:
         if dr == "^":
-            santa = (santa[0], santa[1] + 1)
+            pos += 1j
         elif dr == "v":
-            santa = (santa[0], santa[1] - 1)
+            pos -= 1j
         elif dr == ">":
-            santa = (santa[0] + 1, santa[1])
+            pos += 1
         elif dr == "<":
-            santa = (santa[0] - 1, santa[1])
-        houses[santa] = houses.get(santa, 0) + 1
-    else:
-        if dr == "^":
-            robo = (robo[0], robo[1] + 1)
-        elif dr == "v":
-            robo = (robo[0], robo[1] - 1)
-        elif dr == ">":
-            robo = (robo[0] + 1, robo[1])
-        elif dr == "<":
-            robo = (robo[0] - 1, robo[1])
-        houses[robo] = houses.get(robo, 0) + 1
+            pos -= 1
+        houses.add(pos)
 
-print("P2:", len(houses))
+    return len(houses)
 
 
+@solution_timer(2015, 3, 2)
+def part_two(input_data: list[str]):
+    directions = input_data[0]
+    santa = 0+0j
+    robo_santa = 0+0j
+    houses = {0+0j}
+    for i, dr in enumerate(directions):
+        if i % 2 == 0:
+            if dr == "^":
+                santa += 1j
+            elif dr == "v":
+                santa -= 1j
+            elif dr == ">":
+                santa += 1
+            elif dr == "<":
+                santa -= 1
+            houses.add(santa)
+        else:
+            if dr == "^":
+                robo_santa += 1j
+            elif dr == "v":
+                robo_santa -= 1j
+            elif dr == ">":
+                robo_santa += 1
+            elif dr == "<":
+                robo_santa -= 1
+            houses.add(robo_santa)
+
+    return len(houses)
 
 
-
-
-
-
-
+if __name__ == "__main__":
+    data = get_input(2015, 3)
+    part_one(data)
+    part_two(data)

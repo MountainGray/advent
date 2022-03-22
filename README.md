@@ -72,5 +72,3 @@ Its a bit of a mess right now as I am restructuring to better modularize the dif
 ## Rust
 
 ### setup
-
-
