@@ -1,8 +1,7 @@
 # :christmas_tree: Advent of Code
 
-**Advent 2021 is currently live!!**
-
 This repository contains my solutions to problems from [Advent of Code](https://adventofcode.com/)
+Its a bit of a mess right now as I am restructuring to better modularize the different language sections, all the python solutions are being re-written
 
 ## Highlights
 
@@ -74,18 +73,4 @@ This repository contains my solutions to problems from [Advent of Code](https://
 
 ### setup
 
-to run my rust solutions you must add 
 
-## Year Reviews
-
-### 2021
-
-```Currently active!```
-
-### 2020
-
-```I will be fixing up my 2020 solutions from my first attempt. I was just learning python when i did these solutions and some of them are quite messy. (up to day 6 reworked)```
-
-### 2015
-
-```Did a few days to practice for 2021, will finish after this year's event is over```

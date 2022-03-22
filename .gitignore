@@ -5,3 +5,5 @@ credentials.txt
 */target
 cargo.lock
 .env
+input/
+inputs/
