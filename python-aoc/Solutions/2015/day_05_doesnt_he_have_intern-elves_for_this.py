@@ -1,55 +1,66 @@
-inp = open('2015/day05/input.txt').read().split('\n')[:]
+from advent import get_input, solution_timer
 import re
-# Part 1
-gs = 0
-for line in inp:
-    qual=0
-    s = set(line)
-    vowels = ['a', 'e', 'i', 'o', 'u']
-    vc = 0
-    for v in vowels:
-        vc += line.count(v)
-    if vc >= 3:
-        qual += 1
-    bad = ["ab", "cd", "pq", "xy"]
-    for b in bad:
-        if line.count(b) >= 1:
-            qual -= 1
-            break
-    for x in s:
-        if line.count(x+x) >= 1:
+
+
+@solution_timer(2015, 5, 1)
+def part_one(input_data: list[str]):
+
+    nice_strings = 0
+    for line in input_data:
+        qual = 0
+        characters = set(line)
+
+        vowels = ["a", "e", "i", "o", "u"]
+        vowel_count = 0
+        for vowel in vowels:
+            vowel_count += line.count(vowel)
+        if vowel_count >= 3:
             qual += 1
-            break
-    if qual == 2:
-        gs += 1
 
-print("P1:", gs)
-# Part 2
-gs=0
-for line in inp:
-    qual = 0
-    char = set(line)
-    for ch in char:
-        regex= re.compile(f"{ch}.{ch}")
-        if regex.search(line):
-            qual+=1
-            break
-    
-    done= False
-    for ch in char:
-        for ch2 in char:
-            regex = re.compile(f"{ch}{ch2}")
-            if len(regex.split(line))>2:
-                print(regex.split(line))
-                qual+=1
-                done=True
+        bad_strs = ["ab", "cd", "pq", "xy"]
+        for bad_str in bad_strs:
+            if line.count(bad_str) >= 1:
+                qual -= 1
                 break
-        if done:
-            break
+        for char in characters:
+            if line.count(char + char) >= 1:
+                qual += 1
+                break
+        if qual == 2:
+            nice_strings += 1
+    return nice_strings
 
-    if qual >=2:
-        gs+=1
 
-print("P2:", gs)
+@solution_timer(2015, 5, 2)
+def part_two(input_data: list[str]):
+    nice_string_count = 0
 
-    
+    for line in input_data:
+        qual = 0
+        char = set(line)
+        for ch in char:
+            regex = re.compile(f"{ch}.{ch}")
+            if regex.search(line):
+                qual += 1
+                break
+
+        done = False
+        for ch in char:
+            for ch2 in char:
+                regex = re.compile(f"{ch}{ch2}")
+                if len(regex.split(line)) > 2:
+                    qual += 1
+                    done = True
+                    break
+            if done:
+                break
+
+        if qual >= 2:
+            nice_string_count += 1
+    return nice_string_count
+
+
+if __name__ == "__main__":
+    input_data = get_input(2015, 5)
+    part_one(input_data)
+    part_two(input_data)

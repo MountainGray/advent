@@ -1,42 +1,57 @@
-inp = open('2015/day06/input.txt').read().split('\n')[:-1]
+from advent import get_input, solution_timer
 
-commands= []
-print(inp)
-for x in inp:
-    a =[]
-    print("test")
-    if "turn on" in x:
-        a.append(0)
-    elif "turn off" in x:
-        a.append(1)
-    else:
-        print("test")
-        a.append(2)
-    b = x.split(" ")
-    b = b[-3].split(",")+b[-1].split(",")
-    a = a + [int(b[0]),int(b[1]), int(b[2]), int(b[3])]
-    commands.append(a)
 
-grid = [[0 for x in range(1000)] for y in range(1000)]
-print(commands)
-for x in commands:
-    if x[0] == 0:
-        for i in range(x[1], x[3]+1):
-            for j in range(x[2], x[4]+1):
-                grid[i][j] += 1
-    elif x[0] == 1:
-        for i in range(x[1], x[3]+1):
-            for j in range(x[2], x[4]+1):
-                grid[i][j] -= 1 if grid[i][j] > 0 else 0
-    elif x[0] == 2:
-        for i in range(x[1], x[3]+1):
-            for j in range(x[2], x[4]+1):
-                grid[i][j] += 2 
+@solution_timer(2015, 6, 1)
+def part_one(input_data: list[str]):
+    commands = parse_input(input_data)
+    grid = [[0 for x in range(1000)] for y in range(1000)]
+    for operation, (x1, y1, x2, y2) in commands:
+        for x in range(x1, x2 + 1):
+            for y in range(y1, y2 + 1):
+                if operation == 0:
+                    grid[x][y] = 1
+                elif operation == 1:
+                    grid[x][y] = 0
+                else:
+                    grid[x][y] = 1 if grid[x][y] == 0 else 0
 
-lights = 0
-for x in grid:
-    for y in x:
-        lights += y
+    return sum(sum(row) for row in grid)
 
-print(lights)
-        
+
+@solution_timer(2015, 6, 2)
+def part_two(input_data: list[str]):
+    commands = parse_input(input_data)
+    grid = [[0 for x in range(1000)] for y in range(1000)]
+    for operation, (x1, y1, x2, y2) in commands:
+        for x in range(x1, x2 + 1):
+            for y in range(y1, y2 + 1):
+                if operation == 0:
+                    grid[x][y] += 1
+                elif operation == 1:
+                    grid[x][y] = max(0, grid[x][y] - 1)
+                else:
+                    grid[x][y] += 2
+
+    return sum(map(sum, grid))
+
+
+def parse_input(input_data: list[str]) -> list[tuple[int, tuple[int, int, int, int]]]:
+    commands = []
+    for line in input_data:
+        if "turn on" in line:
+            command = 0
+        elif "turn off" in line:
+            command = 1
+        else:  # toggle
+            command = 2
+        points = line.split(" ")
+        points = tuple(map(int, points[-3].split(",") + points[-1].split(",")))
+        command = (command, points)
+        commands.append(command)
+    return commands
+
+
+if __name__ == "__main__":
+    inp = get_input(2015, 6)
+    part_one(inp)
+    part_two(inp)

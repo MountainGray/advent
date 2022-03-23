@@ -1,5 +1,3 @@
-from typing import List
-
 from advent.load_input import get_input
 from advent.timer import solution_timer
 
@@ -22,8 +20,8 @@ def part_two(input_data: list[str]):
     return ribbon
 
 
-def parse_input(input_data: list[str]) -> List[List[int]]:
-    dimensions: List[List[int]] = []
+def parse_input(input_data: list[str]) -> list[list[int]]:
+    dimensions: list[list[int]] = []
     for line in input_data:
         dimensions.append(sorted(map(int, line.split("x"))))
     return dimensions
