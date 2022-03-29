@@ -1,5 +1,10 @@
 credentials.txt
 
+# python
+*.egg_info/
+*.egg
+__pycache__/
+
 # Added by cargo
 
 */target

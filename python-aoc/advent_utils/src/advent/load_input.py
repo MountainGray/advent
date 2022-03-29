@@ -13,7 +13,7 @@ def get_input(year, day, filename="input.txt", remove_end_blank=True) -> List[st
         filename: filename of the input
         remove_end_blank: remove the empty line at the end of the file (default: True)
     """
-    path: str = _get_input_path(year, day, filename)
+    path: str = get_input_path(year, day, filename)
     if not os.path.exists(path):
         raise FileNotFoundError(f"{path} does not exist")
     with open(path, "r") as f:
@@ -56,5 +56,5 @@ def get_input_grid(
     return grid
 
 
-def _get_input_path(year, day, filename="input.txt") -> str:
+def get_input_path(year, day, filename="input.txt") -> str:
     return os.path.join(ROOT_DIR, f"input\\{year}\\day{day}\\{filename}")

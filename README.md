@@ -18,13 +18,13 @@ Its a bit of a mess right now as I am restructuring to better modularize the dif
 | Day 5  |:star::star:|            |            |            |            |:star::star:|:star::star:|
 | Day 6  |:star::star:|            |            |            |            |:star::star:|:star::star:|
 | Day 7  |:star::star:|            |            |            |            |:star::star:|:star::star:|
-| Day 8  |            |            |            |            |            |:star::star:|:star::star:|
-| Day 9  |            |            |            |            |            |:star::star:|:star::star:|
-| Day 10 |            |            |            |            |            |:star::star:|:star::star:|
-| Day 11 |            |            |            |            |            |:star::star:|:star::star:|
-| Day 12 |            |            |            |            |            |:star::star:|:star::star:|
-| Day 13 |            |            |            |            |            |:star::star:|:star::star:|
-| Day 14 |            |            |            |            |            |:star::star:|:star::star:|
+| Day 8  |:star::star:|            |            |            |            |:star::star:|:star::star:|
+| Day 9  |:star::star:|            |            |            |            |:star::star:|:star::star:|
+| Day 10 |:star::star:|            |            |            |            |:star::star:|:star::star:|
+| Day 11 |:star::star:|            |            |            |            |:star::star:|:star::star:|
+| Day 12 |:star::star:|            |            |            |            |:star::star:|:star::star:|
+| Day 13 |:star::star:|            |            |            |            |:star::star:|:star::star:|
+| Day 14 |:star::star:|            |            |            |            |:star::star:|:star::star:|
 | Day 15 |            |            |            |            |            |:star::star:|:star::star:|
 | Day 16 |            |            |            |            |            |:star::star:|:star::star:|
 | Day 17 |            |            |            |            |            |:star::star:|:star::star:|
