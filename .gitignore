@@ -1,4 +1,5 @@
-credentials.txt
+# For advent cookie
+.cookie
 
 # python
 *.egg_info/

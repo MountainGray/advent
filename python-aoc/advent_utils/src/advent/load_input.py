@@ -1,6 +1,8 @@
 import os
 from typing import Any, List, Callable
 from advent.config import ROOT_DIR
+import requests
+from advent.console import console
 
 
 def get_input(year, day, filename="input.txt", remove_end_blank=True) -> List[str]:
@@ -15,7 +17,11 @@ def get_input(year, day, filename="input.txt", remove_end_blank=True) -> List[st
     """
     path: str = get_input_path(year, day, filename)
     if not os.path.exists(path):
-        raise FileNotFoundError(f"{path} does not exist")
+        if filename == "input.txt":
+            _download_input(year, day)
+        else:
+            raise FileNotFoundError(f"{path} does not exist")
+
     with open(path, "r") as f:
         contents = f.read().split("\n")
         if (
@@ -57,4 +63,33 @@ def get_input_grid(
 
 
 def get_input_path(year, day, filename="input.txt") -> str:
-    return os.path.join(ROOT_DIR, f"input\\{year}\\day{day}\\{filename}")
+    return os.path.join(ROOT_DIR, f"input/{year}/day{day}/{filename}")
+
+
+
+def _download_input(year, day):
+    "downloads the input for a given day from adventofcode.com"
+    
+    cookie_path = ROOT_DIR + "/input/.cookie"
+
+    if not os.path.exists(ROOT_DIR + "/input"):
+        os.mkdir(ROOT_DIR + "/input")
+
+    if not os.path.exists(cookie_path):
+        session_cookie = console.input(
+            "Session cookie missing, please input adventofcode.com session cookie: "
+        )
+        with open(cookie_path, "w", encoding="utf-8") as file:
+            file.write(session_cookie)
+
+    cookie = open(cookie_path, "r", encoding="utf-8").read().split("\n")[0]
+    headers = {"session": cookie}
+    url = f"https://adventofcode.com/{year}/day/{day}/input"
+
+    session = requests.Session()
+    response = session.get(url, cookies=headers)
+    if not os.path.exists(f"{ROOT_DIR}/input/{year}/day{day}"):
+        os.makedirs(f"{ROOT_DIR}/input/{year}/day{day}")
+
+    with open(f"{ROOT_DIR}/input/{year}/day{day}/input.txt", "w", encoding="utf-8") as file:
+        file.write(response.text)

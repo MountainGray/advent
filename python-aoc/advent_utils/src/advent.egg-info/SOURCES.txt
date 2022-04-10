@@ -3,7 +3,6 @@ setup.cfg
 src/advent/__init__.py
 src/advent/config.py
 src/advent/console.py
-src/advent/fetch_data.py
 src/advent/load_input.py
 src/advent/timer.py
 src/advent.egg-info/PKG-INFO
