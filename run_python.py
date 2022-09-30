@@ -1,4 +1,3 @@
-import fire
 import rich
 import os
 

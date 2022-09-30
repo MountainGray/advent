@@ -88,8 +88,25 @@ def _download_input(year, day):
 
     session = requests.Session()
     response = session.get(url, cookies=headers)
+
+    # Response if challenge is not unlocked yet (make prefetch cli command?)
+    # TODO: check if this is the correct response
+    if response.text == "Please don't repeatedly request this endpoint before it unlocks!":
+        console.print(
+            f"Day {day} has not unlocked yet, please try again later", style="red"
+        )
+        return # TODO: raise exception? Some form of error state
+
+    # response if session cookie invalid
+    if response.text == "Puzzle inputs differ by user.  Please log in to get your puzzle input.":
+        console.print("Likely invalid session cookie, please input new session cookie", style="red")
+        session_cookie = console.input()
+        with open(cookie_path, "w", encoding="utf-8") as file:
+            file.write(session_cookie)
+
     if not os.path.exists(f"{ROOT_DIR}/input/{year}/day{day}"):
         os.makedirs(f"{ROOT_DIR}/input/{year}/day{day}")
+    
 
     with open(f"{ROOT_DIR}/input/{year}/day{day}/input.txt", "w", encoding="utf-8") as file:
         file.write(response.text)
