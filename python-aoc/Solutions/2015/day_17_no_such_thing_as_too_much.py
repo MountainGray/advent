@@ -1,10 +1,9 @@
 from advent import get_input, solution_timer
 from functools import lru_cache
-global counter
-counter = 0
+
 @solution_timer(2015, 17, 1)
 def part_one(input_data: list[str]):
-    cubesa = tuple(map(int, input_data))
+    cubes = tuple(map(int, input_data))
 
     @lru_cache(None)
     def recur(size: int, cubes: tuple[int]):
@@ -15,13 +14,13 @@ def part_one(input_data: list[str]):
         elif len(cubes)==0:
             return 0
         else:
-            sa = 0
-            sc = list(cubes)
+            filled = 0
+            cubes_list = list(cubes)
             for i in range(len(cubes)):
-                a = sc.copy()[i+1:]
-                sa += recur(size - cubes[i], tuple(a))
-            return sa
-    return recur(150, cubesa)
+                cubes_slice = cubes_list[i+1:]
+                filled += recur(size - cubes[i], tuple(cubes_slice))
+            return filled
+    return recur(150, cubes)
     
 
 @solution_timer(2015, 17, 2)
@@ -40,10 +39,10 @@ def part_two(input_data: list[str]):
         elif len(cubes)==0:
             return min_cup_fills
         elif size > 0:
-            sc = list(cubes)
+            cube_list = list(cubes)
             for i in range(len(cubes)):
-                a = sc.copy()[i+1:]
-                min_cup_fills = recur(size - cubes[i], tuple(a), cont_used+1, min_cup_fills)
+                cube_slice = cube_list[i+1:]
+                min_cup_fills = recur(size - cubes[i], tuple(cube_slice), cont_used+1, min_cup_fills)
             return min_cup_fills
         else:
             return min_cup_fills

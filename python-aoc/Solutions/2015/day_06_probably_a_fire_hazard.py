@@ -4,7 +4,7 @@ from advent import get_input, solution_timer
 @solution_timer(2015, 6, 1)
 def part_one(input_data: list[str]):
     commands = parse_input(input_data)
-    grid = [[0 for x in range(1000)] for y in range(1000)]
+    grid = [[0 for _ in range(1000)] for _ in range(1000)]
     for operation, (x1, y1, x2, y2) in commands:
         for x in range(x1, x2 + 1):
             for y in range(y1, y2 + 1):
@@ -21,7 +21,7 @@ def part_one(input_data: list[str]):
 @solution_timer(2015, 6, 2)
 def part_two(input_data: list[str]):
     commands = parse_input(input_data)
-    grid = [[0 for x in range(1000)] for y in range(1000)]
+    grid = [[0 for _ in range(1000)] for _ in range(1000)]
     for operation, (x1, y1, x2, y2) in commands:
         for x in range(x1, x2 + 1):
             for y in range(y1, y2 + 1):
