@@ -13,3 +13,6 @@ cargo.lock
 .env
 input/
 inputs/
+
+venv/
+*cpython-310.pyc
