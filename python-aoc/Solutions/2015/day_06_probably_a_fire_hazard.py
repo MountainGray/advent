@@ -1,38 +1,37 @@
 from advent import get_input, solution_timer
-
+import numpy as np
 
 @solution_timer(2015, 6, 1)
 def part_one(input_data: list[str]):
     commands = parse_input(input_data)
-    grid = [[0 for _ in range(1000)] for _ in range(1000)]
-    for operation, (x1, y1, x2, y2) in commands:
-        for x in range(x1, x2 + 1):
-            for y in range(y1, y2 + 1):
-                if operation == 0:
-                    grid[x][y] = 1
-                elif operation == 1:
-                    grid[x][y] = 0
-                else:
-                    grid[x][y] = 1 if grid[x][y] == 0 else 0
+    grid = np.zeros((1000, 1000), int)
 
-    return sum(sum(row) for row in grid)
+    for operation, (x1, y1, x2, y2) in commands:
+        if operation == 0:
+            grid[x1:x2+1, y1:y2+1] = 1
+        elif operation == 1:
+            grid[x1:x2+1, y1:y2+1] = 0
+        else:
+            grid[x1:x2+1, y1:y2+1] ^= 1
+
+    return np.sum(grid)
 
 
 @solution_timer(2015, 6, 2)
 def part_two(input_data: list[str]):
     commands = parse_input(input_data)
-    grid = [[0 for _ in range(1000)] for _ in range(1000)]
-    for operation, (x1, y1, x2, y2) in commands:
-        for x in range(x1, x2 + 1):
-            for y in range(y1, y2 + 1):
-                if operation == 0:
-                    grid[x][y] += 1
-                elif operation == 1:
-                    grid[x][y] = max(0, grid[x][y] - 1)
-                else:
-                    grid[x][y] += 2
+    grid = np.zeros((1000, 1000), int)
 
-    return sum(map(sum, grid))
+    for operation, (x1, y1, x2, y2) in commands:
+        if operation == 0:
+            grid[x1:x2+1, y1:y2+1] += 1
+        elif operation == 1:
+            grid[x1:x2+1, y1:y2+1] -= 1
+            grid[grid<0] = 0
+        else:
+            grid[x1:x2+1, y1:y2+1] += 2
+
+    return np.sum(grid)
 
 
 def parse_input(input_data: list[str]) -> list[tuple[int, tuple[int, int, int, int]]]:
