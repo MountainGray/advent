@@ -54,3 +54,4 @@ if __name__ == "__main__":
     inp = get_input(2015, 6)
     part_one(inp)
     part_two(inp)
+    
