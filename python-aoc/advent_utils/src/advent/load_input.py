@@ -52,7 +52,7 @@ def get_input_grid(
         filename: filename of the input
         remove_end_blank: remove the empty line at the end of the file
     """
-    contents = get_input(year, day, filename, remove_end_blank)
+    contents = get_input(year, day, filename, remove_end_blank=remove_end_blank)
     if delim == "":
         grid = [[x for x in line] for line in contents]
     else:
