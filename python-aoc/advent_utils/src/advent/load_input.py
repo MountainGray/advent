@@ -1,11 +1,12 @@
 import os
-from typing import Any, List, Callable
-from advent.config import ROOT_DIR
+from typing import Any, Callable, List
+
 import requests
+from advent.config import ROOT_DIR
 from advent.console import console
 
 
-def get_input(year, day, filename="input.txt", remove_end_blank=True) -> List[str]:
+def get_input(year, day, filename="input.txt", split_char = "\n", remove_end_blank=True) -> List[str]:
     """
     Load the input, returns a list of strings
     TODO: add load input if not found
@@ -23,11 +24,12 @@ def get_input(year, day, filename="input.txt", remove_end_blank=True) -> List[st
             raise FileNotFoundError(f"{path} does not exist")
 
     with open(path, "r") as f:
-        contents = f.read().split("\n")
+        contents = f.read()
         if (
-            contents[-1] == "" and remove_end_blank
+            contents[-1] == "\n" and remove_end_blank
         ):  # Catch those pesky blank lines at the end
-            contents.pop()
+            contents= contents.removesuffix("\n")
+        contents = contents.split(split_char)
         return contents
 
 
