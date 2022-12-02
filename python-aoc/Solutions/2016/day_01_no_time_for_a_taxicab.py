@@ -1,10 +1,6 @@
-import sys
+from advent import get_input
 
-print(sys.path)
-from aoc_utils import load_input
-
-
-directions: list[str] = load_input(2016, 1)
+directions: list[str] = get_input(2016, 1)[0].split(', ')
 
 #p1
 orient = 0+1j
