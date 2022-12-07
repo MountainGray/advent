@@ -15,7 +15,6 @@ def part_one(inp, stacks):
         for _ in range(n): stacks[b-1].insert(0, stacks[a-1].pop(0)) 
     return "".join([x[0] for x in stacks])
 
-
 @solution_timer(2022, 5, 2)
 def part_two(inp, stacks):
     for i in inp[10:]:
@@ -29,4 +28,3 @@ if __name__ == "__main__":
     stacks = get_stacks(input)
     part_one(input, stacks)
     part_two(input, stacks)
-
