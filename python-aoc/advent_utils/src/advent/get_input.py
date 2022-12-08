@@ -85,7 +85,10 @@ def _download_input(year, day):
             file.write(session_cookie)
 
     cookie = open(cookie_path, "r", encoding="utf-8").read().split("\n")[0]
-    headers = {"session": cookie}
+    headers = {
+        "session": cookie,
+        "User-Agent": "github.com/jacobgnewman/advent/tree/master/python-aoc/advent_utils by jacobgnewman001@gmail.com",
+        }
     url = f"https://adventofcode.com/{year}/day/{day}/input"
 
     session = requests.Session()

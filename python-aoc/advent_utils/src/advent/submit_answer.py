@@ -22,7 +22,10 @@ def submit(year, day, part, answer):
     
 
     cookie = open(cookie_path, "r", encoding="utf-8").read().split("\n")[0]
-    headers = {"session": cookie}
+    headers = {
+        "session": cookie,
+        "User-Agent": "github.com/jacobgnewman/advent/tree/master/python-aoc/advent_utils by jacobgnewman001@gmail.com",
+    }
     session = requests.Session()
     validate = console.input(f"Answer: {answer}\n Submit? y/n:")
     if validate == "y" or validate == "Y":
