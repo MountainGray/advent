@@ -41,7 +41,3 @@ if __name__ == '__main__':
     input = get_input(2022, 14)
     part_one(input)
     part_two(input)
-
-        
-
-    
