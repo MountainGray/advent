@@ -36,7 +36,7 @@ def part_two():
     eq2 = get_eqn(b)
 
     x = sym.symbols("x")
-    eqn = sym.Eq((eval(eq1)) - (eval(eq2)),0)
+    eqn = sym.Eq((eval(eq1)) , (eval(eq2)))
     result = sym.solve(eqn, x)
     return int(result[0])
 
