@@ -3,7 +3,9 @@ setup.cfg
 src/advent/__init__.py
 src/advent/config.py
 src/advent/console.py
-src/advent/load_input.py
+src/advent/get_input.py
+src/advent/helpers.py
+src/advent/submit_answer.py
 src/advent/timer.py
 src/advent.egg-info/PKG-INFO
 src/advent.egg-info/SOURCES.txt

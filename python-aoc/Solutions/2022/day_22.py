@@ -1,22 +1,10 @@
 from advent import get_input
-inp = '''        ...#
-        .#..
-        #...
-        ....
-...#.......#
-........#...
-..#....#....
-..........#.
-        ...#....
-        .....#..
-        .#......
-        ......#.
 
-10R5L5R10L4R5L5'''.split("\n\n")
 inp = get_input(2022, 22, split_char="\n\n")
 m, dr = inp
 
 m= m.splitlines()
+
 
 positions = {}
 width = 50
@@ -37,6 +25,7 @@ for i in dr:
         moves.append(i)
     else:
         v+=i
+moves.append(int(v))
 
 def print_map():
     for i in range(len(m)):
@@ -47,51 +36,60 @@ def print_map():
                 print(" ", end="")
         print()
 
+    for i in range(len(m)):
+        for j in range(len(m[i])):
+            if complex(j,i) in positions:
+                print(positions[complex(j,i)][1], end="")
+            else:
+                print(" ", end="")
+        print()
+print(moves)
+
 translations = {
     1: {
         # go up to 9 on the right
-        0-1j: (lambda x: 0 + (width*3 + x.real%width)*1j, 1+0j),
+        0-1j: (lambda x: 0 + (150 + (x.real%50))*1j, 1+0j),
         # go left to 6 on the left upside down
-        -1+0j: (lambda x: 0 + (2*width + (width-(x.imag+1)))*1j, 1+0j),
+        -1+0j: (lambda x: 0 + (100 + (49-x.imag))*1j, 1+0j),
         },
     2: {
         # go up to 9 on the bottom
-        0-1j: (lambda x: (x.real%width) + (4j*width-1j), 0-1j),
+        0-1j: (lambda x: (x.real%50) + 199j, 0-1j),
         # go right to 7 upside down
-        1+0j: (lambda x: (width*2-1)+(2*width+width-(x.imag+1))*1j, -1+0j),
+        1+0j: (lambda x: (99)+(100+49-x.imag)*1j, -1+0j),
         # go down to 4 on the right
-        0+1j: (lambda x: (width*2-1)+(width+(x.real%width))*1j, -1+0j)
+        0+1j: (lambda x: 99+(50+(x.real%50))*1j, -1+0j)
         },
     4: {
         # going left to top of 6
-        -1+0j: (lambda x: x.imag%width + 2j*width, 0+1j),
+        -1+0j: (lambda x: (x.imag%50) + 100j, 0+1j),
         # going right to bottom of 2
-        1+0j: (lambda x: (2*width + x.imag%width) + 1j*(width-1), 0-1j),
+        1+0j: (lambda x: (100 + (x.imag%50)) + 49j, 0-1j),
         },
     6: {
         # go up to left of 4
-        0-1j: (lambda x: width + (width + x.real)*1j, 1+0j),
+        0-1j: (lambda x: 50 + (50+ x.real)*1j, 1+0j),
         # go left to 1 upside down
-        -1+0j: (lambda x: width + (width - (x.imag%width + 1))*1j, 1+0j),
+        -1+0j: (lambda x: 50 + (49 - (x.imag%50))*1j, 1+0j),
 
     },
     7: {
         # go right to 2 upsidedown
-        1+0j: (lambda x: width*3-1 + (width - (x.imag%width+1))*1j, -1+0j),
+        1+0j: (lambda x: 149 + (49- (x.imag%50))*1j, -1+0j),
         # go down to 9 from the right
-        0+1j: (lambda x: width-1 + (width*3 + x.real%width)*1j, -1+0j),
+        0+1j: (lambda x: 49 + (150 + (x.real%50))*1j, -1+0j),
     },
     9: {
         # go right to 7 from the bottom
-        1+0j: (lambda x: (width+x.imag%width)+ (width*3j-1j), 0-1j),
+        1+0j: (lambda x: (50+x.imag%50)+ 149j, 0-1j),
         # go down to 2 from the top
-        0+1j: (lambda x: width*2 + x.real + 0j, 1+0j),
+        0+1j: (lambda x: (100 + x.real) + 0j, 0+1j),
         # go left to one from the top
-        -1+0j: (lambda x: (width + x.imag%width) + 0j, 0+1j),
+        -1+0j: (lambda x: (50+ (x.imag%50)) + 0j, 0+1j),
     }
     }
 
-start = min(filter(lambda x: x.imag==0, positions.keys()), key=lambda x: x.real)
+start = 50+0j
 orientation = 1 + 0j
 
 for i in moves:
@@ -114,7 +112,6 @@ for i in moves:
                     start += orientation
             else:
                 p_funk, ori = translations[sector][orientation]
-                print(positions[start][1], positions[p_funk(start)][1])
                 if positions[p_funk(start)][0] == "#":
                     break
                 else:
@@ -128,7 +125,7 @@ for i in moves:
                         positions[start][0] = "^"
                     start = p_funk(start)
                     orientation = ori
-                    print_map()
+                    #print_map()
     else:
         if i == "R":
             orientation *= 1j

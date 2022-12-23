@@ -14,6 +14,7 @@ cargo.lock
 input/
 inputs/
 
+advent_venv/
 venv/
 *.cpython-310.pyc
 *.pyc
