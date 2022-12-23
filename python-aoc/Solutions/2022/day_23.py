@@ -1,24 +1,8 @@
 from advent import get_input
-inp = '''....#..
-..###.#
-#...#.#
-.#...##
-#.###..
-##.#.##
-.#..#..'''.splitlines()
-#inp = '''.....
-#..##.
-#..#..
-#.....
-#..##.
-#.....'''.splitlines()
-#inp = get_input(2022, 23)
+inp = get_input(2022, 23)
 # defaultdict
 from collections import defaultdict
 elves = {}
-
-
-# enum for xy ordinal directions
 
 
 
