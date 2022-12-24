@@ -45,8 +45,7 @@ def traverse_blizzard(blizards, start, end):
             for dx, dy in [(1,0), (-1,0), (0,1), (0,-1), (0,0)]:
                 if ((x+dx) <max_x and (y+dy) < max_y and (x+dx) > min_x and (y+dy) > min_y) or ((x+dx, y+dy) == end) or ((x+dx, y+dy) == start):
                     if (x+dx, y+dy) not in taken:
-                        if (x+dx, y+dy) not in new_fans:
-                            new_fans.add((x+dx, y+dy))
+                        new_fans.add((x+dx, y+dy))
         fan = new_fans
     return blizards, ans
                         
