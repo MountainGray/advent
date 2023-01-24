@@ -1,0 +1,11 @@
+[package]
+name = "year_2017"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "2017"
+path = "src/main.rs"
+
+[dependencies]
+aoc = {path = "../aoc"}
