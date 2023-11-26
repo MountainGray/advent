@@ -25,6 +25,9 @@ def get_input(year, day, filename="input.txt", split_char = "\n", remove_end_bla
 
     with open(path, "r") as f:
         contents = f.read()
+        if contents == "Puzzle inputs differ by user.  Please log in to get your puzzle input.":
+            _download_input(year, day)
+            return get_input(year, day, filename, split_char, remove_end_blank)
         if (
             contents[-1] == "\n" and remove_end_blank
         ):  # Catch those pesky blank lines at the end
@@ -103,11 +106,12 @@ def _download_input(year, day):
         return # TODO: raise exception? Some form of error state
 
     # response if session cookie invalid
-    if response.text == "Puzzle inputs differ by user.  Please log in to get your puzzle input.":
+    if response.text == "Puzzle inputs differ by user.  Please log in to get your puzzle input.\n":
         console.print("Likely invalid session cookie, please input new session cookie", style="red")
         session_cookie = console.input()
         with open(cookie_path, "w", encoding="utf-8") as file:
             file.write(session_cookie)
+        return _download_input(year, day)
 
     if not os.path.exists(f"{ROOT_DIR}/input/{year}/day{day}"):
         os.makedirs(f"{ROOT_DIR}/input/{year}/day{day}")

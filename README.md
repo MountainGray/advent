@@ -4,9 +4,22 @@ This repository contains my solutions to problems from [Advent of Code](https://
 Its a bit of a mess right now as I am restructuring to better modularize the different language sections :)
 Solutions for 2022 are currently updated.
 
+## advent - Module for input fetching and extra python magic
+
 Feel free to checkout my python module for loading input and submitting here: [advent_utils](https://github.com/jacobgnewman/advent/tree/master/python-aoc/advent_utils)
 
+Note to self:
+setup local module
+
+```bash
+pip install -r requirements.txt
+pip install -e . # keep files in python-aoc/advent_utils, including loaded puzzle data
+```
+
+and update cookie in : `python-aoc/advent_utils/src/advent/input/.cookie`
+
 ## Highlights
+
 102'nd on [Day 21, 2022](https://github.com/jacobgnewman/advent/blob/master/python-aoc/Solutions/2022/day_21_monkey_math.py)
 
 ## Stars

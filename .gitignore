@@ -5,6 +5,12 @@
 *.egg_info/
 *.egg
 __pycache__/
+# venv 
+advent_venv/
+venv/
+*.cpython-310.pyc
+*.pyc
+*/__pycache__/*
 
 # Added by cargo
 
@@ -14,8 +20,12 @@ cargo.lock
 input/
 inputs/
 
-advent_venv/
-venv/
-*.cpython-310.pyc
-*.pyc
-*/__pycache__/*
+
+# zig
+zig-cache/
+zig-out/
+/release/
+/debug/
+/build/
+/build-*/
+/docgen_tmp/
