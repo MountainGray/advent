@@ -8,7 +8,7 @@ var gpa_impl = std.heap.GeneralPurposeAllocator(.{}){};
 pub const gpa = gpa_impl.allocator();
 
 
-const data = @embedFile("data/day01.txt");
+const data = @embedFile("data/2018/day01.txt");
 
 
 pub fn main() !void {
