@@ -1,25 +1,27 @@
-# For advent cookie
+# advent cookie
 .cookie
 
 # python
 *.egg_info/
 *.egg
 __pycache__/
-# venv 
+
+# python venv 
 advent_venv/
 venv/
 *.cpython-310.pyc
 *.pyc
 */__pycache__/*
 
-# Added by cargo
-
+# rust/cargo
 */target
 cargo.lock
 .env
 input/
 inputs/
 
+# puzzle inputs at root folder
+data/*/
 
 # zig
 zig-cache/
@@ -29,3 +31,9 @@ zig-out/
 /build/
 /build-*/
 /docgen_tmp/
+
+# haskell
+*.hi
+
+# C + misc
+*.o
