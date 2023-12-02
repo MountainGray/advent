@@ -1,0 +1,11 @@
+[package]
+name = "aoc2023"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "2023"
+path = "src/main.rs"
+
+[dependencies]
+aoc = {path = "../aoc"}
