@@ -1,6 +1,6 @@
 from advent import get_input, solution_timer
 
-def parse_data(inp):
+def parse_data(inp: list[str]) -> dict[int, dict[int, tuple[int, int, int]]]:
     games = {}
     for line in inp:
         _, id, *_= line.split()
@@ -27,7 +27,7 @@ def parse_data(inp):
     return games
 
 @solution_timer(2023, 2, 1)
-def part_one(inp):
+def part_one(inp: list[str]):
     games = parse_data(inp)
     red = 12
     green = 13
