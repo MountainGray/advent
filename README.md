@@ -8,8 +8,7 @@ Solutions for 2022 are currently updated.
 
 Feel free to checkout my python module for loading input and submitting here: [advent_utils](https://github.com/jacobgnewman/advent/tree/master/python-aoc/advent_utils)
 
-Note to self:
-setup local module
+### setup as local python module
 
 ```bash
 pip install -r requirements.txt
@@ -23,6 +22,9 @@ and update cookie in : `python-aoc/advent_utils/src/advent/input/.cookie`
 102'nd on [Day 21, 2022](https://github.com/jacobgnewman/advent/blob/master/python-aoc/Solutions/2022/day_21_monkey_math.py)
 
 ## Stars
+
+TODO: out of date, update for 2023... and languages specific tables?
+
 
 |        |    2015    |    2016    |    2017    |    2018    |    2019    |    2020*   |    2021    |    2022    |
 | ------ |    ----    |    ----    |    ----    |    ----    |    ----    |    ----    |    ----    |    ----    |
