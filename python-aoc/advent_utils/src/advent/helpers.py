@@ -5,9 +5,10 @@ who needs clean namespaces anyway
 
 # Imports
 
-from typing import List, Tuple, Dict, Set, Union, Any, Annotated
-from itertools import *
+from typing import List, Tuple, Dict, Set, Union, Any, Annotated, Iterator
+from itertools import product
 from collections import defaultdict
+from pprint import pprint
 
 
 # Strucutres
@@ -33,3 +34,13 @@ def print_grid(grid):
     '''Prints out a 2D grid, no assumptions about the value type'''
     for i in grid:
         print(i)
+
+def iter_neigbours(dim: int) -> List[Tuple[int,...]]:
+    '''Returns a list of neighbours cells for a given grid of n dimensions'''
+    return list(product([-1, 0, 1], repeat=dim))
+
+def grid_neigbours(pos: Tuple[int, ...]) -> List[Tuple[int,...]]:
+    '''Returns a list of neighbours for a given position in a n dim grid'''
+    neigbours = [tuple(map(sum, zip(pos, i))) for i in iter_neigbours(len(pos))]
+    neigbours.remove(pos) # remove self
+    return  neigbours

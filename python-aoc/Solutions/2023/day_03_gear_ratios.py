@@ -1,96 +1,80 @@
 from advent import get_input, solution_timer
-from advent.helpers import defaultdict
+from advent.helpers import defaultdict, grid_neigbours
 
 @solution_timer(2023, 3, 1)
 def part_one(inp):
     y_dim, x_dim = len(inp), len(inp[0])
     inp = defaultdict(lambda: '.', {(x,y): c for y, line in enumerate(inp) for x, c in enumerate(line)})
     ans = 0
-    csum = 0
+    part_val = 0
     group = False
     valid = False
     for y in range(y_dim):
         for x in range(x_dim):
             val = inp[(x,y)]
             if val.isnumeric():
-                csum = csum * 10 + int(val)
+                part_val = part_val * 10 + int(val)
                 group = True
                 if not valid:
                     # look in nearby cells for for a symbol
-                    for i in range(-1, 2):
-                        for j in range(-1, 2):
-                            if inp[(x+i,y+j)] != '.' and not inp[(x+i,y+j)].isnumeric():
-                                valid = True
-                                break
-                        if valid:
+                    for (i, j) in grid_neigbours((x,y)):
+                        if inp[(i,j)] != '.' and not inp[(i,j)].isnumeric():
+                            valid = True
                             break
             else: # mid line char
                 if group:
                     if valid:
-                        ans += csum
+                        ans += part_val
                     group = False
                     valid = False
-                    csum = 0
+                    part_val = 0
         # end of line
         if group:
             if valid:
-                ans += csum
+                ans += part_val
             group = False
             valid = False
-            csum = 0
+            part_val = 0
 
     return ans
 
 @solution_timer(2023, 3, 2)
 def part_two(inp):
+    y_dim, x_dim = len(inp), len(inp[0])
+    inp = defaultdict(lambda: '.', {(x,y): c for y, line in enumerate(inp) for x, c in enumerate(line)})
     ans = 0
-    gears = {}
+    gears = defaultdict(list)
+    part_val = 0
+    group = False
+    lgear = set()
 
-    for y, line in enumerate(inp):
-        csum = 0
-        group = False
-        lgear = []
-        for x, char in enumerate(line):
+    for y in range(y_dim):
+        for x in range(x_dim):
+            char = inp[(x,y)]
             if char.isnumeric():
-                if group:
-                    csum = csum * 10 + int(char)
-                else:
-                    csum = int(char)
-                    group = True
-
-                # look for gear
-                for i in range(-1, 2):
-                    for j in range(-1, 2):
-                        if i == 0 and j == 0:
-                            continue
-                        if (0 <= x + i)and (x+i < len(line)) and (0 <= y + j) and (y + j < len(inp)):
-                            if (inp[y + j][x + i] == '*'):
-                                if (x+i, y+j) not in lgear:
-                                    lgear.append((x+i, y+j))
+                part_val = part_val * 10 + int(char)
+                group = True
+                # look in nearby cells for for a symbol
+                for (i, j) in grid_neigbours((x,y)):
+                    if inp[(i,j)] == '*':
+                        lgear.add((i,j))
             else:
-                if group:
+                if group: # mid line char
                     for gear in lgear:
-                        if gear in gears:
-                            gears[gear].append(csum)
-                        else:
-                            gears[gear] = [csum]
-                    csum = 0
+                        gears[gear].append(part_val)
+                    part_val = 0
                     group = False
-                    lgear = []
+                    lgear = set()
         if group:
             for gear in lgear:
-                if gear in gears:
-                    gears[gear].append(csum)
-                else:
-                    gears[gear] = [csum]
+                gears[gear].append(part_val)
+            part_val = 0
             group = False
-            lgear = []
+            lgear = set()
 
-    for key, val in gears.items():
+    for val in gears.values():
         if len(val) == 2:
             ans += val[0] * val[1]
-        elif len(val) >= 3:
-            print("eys")
     return ans
 
 if __name__ == '__main__':

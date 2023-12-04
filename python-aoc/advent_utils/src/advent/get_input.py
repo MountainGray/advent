@@ -97,9 +97,14 @@ def _download_input(year, day):
     session = requests.Session()
     response = session.get(url, cookies=headers)
 
+    fail = [
+        "Please don't repeatedly request this endpoint before it unlocks! The calendar countdown is synchronized with the server time; the link will be enabled on the calendar the instant this puzzle becomes available.\n", # new version
+        "Please don't repeatedly request this endpoint before it unlocks!\n" # old version
+    ]
+
     # Response if challenge is not unlocked yet (make prefetch cli command?)
     # TODO: check if this is the correct response
-    if response.text == "Please don't repeatedly request this endpoint before it unlocks!":
+    if response.text in fail:
         console.print(
             f"Day {day} has not unlocked yet, please try again later", style="red"
         )
