@@ -1,4 +1,5 @@
 from advent import get_input, solution_timer
+from collections import defaultdict
 
 
 @solution_timer(2023, 4, 1)
@@ -24,8 +25,7 @@ def part_one(inp):
 
     return ans
 
-from collections import defaultdict
-
+@solution_timer(2023, 4, 2)
 def part_two(inp):
     vals = []
     ans = 0
