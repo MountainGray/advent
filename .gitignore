@@ -37,3 +37,6 @@ zig-out/
 
 # C + misc
 *.o
+
+# mac garbage
+.DS_Store
