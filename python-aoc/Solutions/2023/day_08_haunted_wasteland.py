@@ -3,16 +3,15 @@ from math import lcm
 
 @solution_timer(2023, 8, 1)
 def part_one(inp):
-    start = "AAA"
-    end = "ZZZ"
-    seq = inp[0]
-    nodes = inp[2:]
+    start, end = "AAA", "ZZZ"
+    seq, _, *nodes = inp
     rn = {}
+
     for line in nodes:
-        k, _, l, r = line.split()
-        l = l[1:-1]
-        r = r[:-1]
-        rn[k]= (l, r)
+        k, _, left, right = line.split()
+        left = left[1:-1]
+        right = right[:-1]
+        rn[k]= (left, right)
 
     curr = start
     i = 0
@@ -32,17 +31,17 @@ def part_one(inp):
 
 @solution_timer(2023, 8, 2)
 def part_two(inp):
-    seq = inp[0]
-    nodes = inp[2:]
+    seq, _, *nodes = inp
     rn = {}
+
     for line in nodes:
         k, _, left, right = line.split()
         left, right= left[1:-1], right[:-1]
         rn[k]= (left, right)
 
-    cnodes = [x for x in rn.keys() if x[2] == "A"]
+    start_nodes = [x for x in rn.keys() if x[2] == "A"]
     gds = {}
-    for start in cnodes:
+    for start in start_nodes:
         curr = start
         i = 0
         s = 0
