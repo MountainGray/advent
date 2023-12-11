@@ -1,15 +1,10 @@
-from advent import get_input, solution_timer, submit
+from advent import get_input, solution_timer
 from itertools import combinations
 
 
 @solution_timer(2023, 11, 1)
 def part_one(inp):
     return solve_generic(inp, 2)
-
-
-    
-
-
 
 @solution_timer(2023, 11, 2)
 def part_two(inp):
@@ -37,8 +32,6 @@ def solve_generic(inp, expansion_size: int):
     computed = {}
 
     for p1, p2 in combinations(points, 2):
-        if (p1, p2) in computed or (p2, p1) in computed:
-            continue
         x1, y1 = p1
         x2, y2 = p2
         distance = abs(x1 - x2) + abs(y1 - y2)
