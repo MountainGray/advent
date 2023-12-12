@@ -1,6 +1,7 @@
 from advent import get_input, solution_timer, submit
 from math import lcm
 
+
 @solution_timer(2023, 8, 1)
 def part_one(inp):
     start, end = "AAA", "ZZZ"
@@ -11,7 +12,7 @@ def part_one(inp):
         k, _, left, right = line.split()
         left = left[1:-1]
         right = right[:-1]
-        rn[k]= (left, right)
+        rn[k] = (left, right)
 
     curr = start
     i = 0
@@ -36,8 +37,8 @@ def part_two(inp):
 
     for line in nodes:
         k, _, left, right = line.split()
-        left, right= left[1:-1], right[:-1]
-        rn[k]= (left, right)
+        left, right = left[1:-1], right[:-1]
+        rn[k] = (left, right)
 
     start_nodes = [x for x in rn.keys() if x[2] == "A"]
     gds = {}
@@ -64,4 +65,3 @@ if __name__ == "__main__":
     inp = get_input(2023, 8)
     part_one(inp)
     part_two(inp)
-
