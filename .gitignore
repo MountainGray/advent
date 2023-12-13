@@ -19,6 +19,7 @@ cargo.lock
 .env
 input/
 inputs/
+rust-aoc/.vscode/
 
 # puzzle inputs at root folder
 data/*/
