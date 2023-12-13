@@ -44,3 +44,7 @@ def grid_neigbours(pos: Tuple[int, ...]) -> List[Tuple[int,...]]:
     neigbours = [tuple(map(sum, zip(pos, i))) for i in iter_neigbours(len(pos))]
     neigbours.remove(pos) # remove self
     return  neigbours
+
+def transform_grid(grid: List[List[Any]] ) -> List[List[Any]]:
+    '''Transforms a grid'''
+    return [[grid[j][i] for j in range(len(grid))] for i in range(len(grid[0]))]

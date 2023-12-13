@@ -1,8 +1,7 @@
 from advent import get_input, solution_timer
-from functools import lru_cache
+from functools import cache
 
-
-@lru_cache(maxsize=None)
+@cache
 def recur_arrangements(record: str, groups: tuple[int, ...]) -> int:
     if len(groups) == 0:
         return 1 if all([x != "#" for x in record]) else 0
