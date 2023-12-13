@@ -10,20 +10,20 @@ def recur_arrangements(record: str, groups: tuple[int, ...]) -> int:
         return 0
 
     recur_sum = 0
-    cur_group = groups[0]
+    cur_group_len = groups[0]
 
     for idx, val in enumerate(record):
         if val == ".":
             continue
 
-        if idx + cur_group > len(record):
+        if idx + cur_group_len > len(record):
             return recur_sum
 
-        if idx + cur_group < len(record) and record[idx + cur_group] == "#":
+        if idx + cur_group_len < len(record) and record[idx + cur_group_len] == "#":
             if val == "#":
                 return recur_sum
-        elif all([x != "." for x in record[idx : idx + cur_group]]):
-            recur_sum += recur_arrangements(record[idx + cur_group + 1 :], groups[1:])
+        elif all([x != "." for x in record[idx : idx + cur_group_len]]):
+            recur_sum += recur_arrangements(record[idx + cur_group_len + 1 :], groups[1:])
             if val == "#":
                 return recur_sum
         else:

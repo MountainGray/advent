@@ -1,5 +1,5 @@
 year = 2023
-day = 12
+day = 13
 tp = f'''
 from advent import get_input, solution_timer, submit
 
@@ -30,4 +30,6 @@ if __name__ == "__main__":
     submit({year}, {day}, 2, ans)
 '''
 
-print(tp)
+path = f"python-aoc/Solutions/{year}/day_{day}.py"
+with open(path, "w") as f:
+    f.write(tp)

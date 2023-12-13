@@ -62,7 +62,7 @@ def part_one(inp):
     for x, y, cdir in [(0, 1, N), (1, 0, W), (-1, 0, E), (0, -1, S)]:
         recur_maze((sx + x, sy + y), cdir)
 
-    print((max(loopscores.values()) + 1)//2)
+    return (max(loopscores.values()) + 1)//2
 
 
 
@@ -160,9 +160,8 @@ def part_two(inp):
 
 if __name__ == "__main__":
 
-    test = get_input(2023, 10, filename="test.txt")
-    part_two(test)
     inp = get_input(2023, 10)
-    ans = part_two(inp)
-    submit(2023, 10, 2, ans)
+    part_one(inp)
+    #part_two(inp)
+    #submit(2023, 10, 2, ans)
 
