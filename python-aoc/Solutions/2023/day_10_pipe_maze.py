@@ -162,6 +162,6 @@ if __name__ == "__main__":
 
     inp = get_input(2023, 10)
     part_one(inp)
-    #part_two(inp)
+    part_two(inp)
     #submit(2023, 10, 2, ans)
 
