@@ -1,5 +1,5 @@
 from advent import get_input, solution_timer
-from advent.helpers import transform_grid
+from advent.helpers import transpose_grid
 
 
 def find_mirror(pat):
@@ -16,7 +16,7 @@ def find_both(pat):
     if ret := find_mirror(pat):
         return 100 * ret
     else:
-        return find_mirror(transform_grid(pat))
+        return find_mirror(transpose_grid(pat))
 
 
 @solution_timer(2023, 13, 1)
@@ -36,7 +36,7 @@ def find_mirrors(pat):
 
 
 def find_all_mirrors(pat):
-    return [x * 100 for x in find_mirrors(pat)] + find_mirrors(transform_grid(pat))
+    return [x * 100 for x in find_mirrors(pat)] + find_mirrors(transpose_grid(pat))
 
 
 def find_smudge(pat) -> int:

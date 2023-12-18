@@ -1,7 +1,7 @@
 year = 2023
-day = 17
-tp = f'''
-from advent import get_input, solution_timer, submit
+day = 18
+tp = f'''from advent import get_input, solution_timer, submit
+from advent.helpers import *
 
 
 @solution_timer({year}, {day}, 1)

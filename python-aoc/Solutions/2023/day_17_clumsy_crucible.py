@@ -1,5 +1,5 @@
 from advent import get_input, solution_timer
-from collections import defaultdict
+from advent.helpers import defaultdict
 mmm = 1000000
 
 @solution_timer(2023, 17, 1)
