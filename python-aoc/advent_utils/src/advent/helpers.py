@@ -11,6 +11,7 @@ from itertools import product
 from collections import defaultdict
 from functools import reduce, cache
 from pprint import pprint
+import numpy as np
 
 
 # Strucutres
