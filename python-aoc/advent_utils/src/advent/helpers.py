@@ -48,9 +48,19 @@ def iter_neigbours(dim: int) -> List[Tuple[int,...]]:
     '''Returns a list of neighbours cells for a given grid of n dimensions'''
     return list(product([-1, 0, 1], repeat=dim))
 
+def iter_ud_neigbours(dim: int) -> List[Tuple[int,...]]:
+    '''Returns a list of neighbours cells for a given grid of n dimensions'''
+    return list(filter(lambda x: 0 in x, list(product([-1, 0, 1], repeat=dim))))
+
 def grid_neigbours(pos: Tuple[int, ...]) -> List[Tuple[int,...]]:
     '''Returns a list of neighbours for a given position in a n dim grid'''
     neigbours = [tuple(map(sum, zip(pos, i))) for i in iter_neigbours(len(pos))]
+    neigbours.remove(pos) # remove self
+    return  neigbours
+
+def grid_ud_neigbours(pos: Tuple[int, ...]) -> List[Tuple[int,...]]:
+    '''Returns a list of neighbours for a given position in a n dim grid'''
+    neigbours = [tuple(map(sum, zip(pos, i))) for i in iter_ud_neigbours(len(pos))]
     neigbours.remove(pos) # remove self
     return  neigbours
 

@@ -1,5 +1,5 @@
-from advent import get_input, solution_timer, submit
-from advent.helpers import *
+from advent import get_input, solution_timer
+from advent.helpers import defaultdict
 
 low = 0
 high = 1
@@ -14,7 +14,7 @@ def part_one(inp):
             t = key[0]
             key = key[1:]
         else:
-            t = "foo"
+            t = "start"
 
         cons = cons.split(", ")
         for con in cons:
@@ -24,28 +24,15 @@ def part_one(inp):
         state = (0,t, cons)
         maps[key] = state 
 
-
     lc, hc = 1000, 0
 
-    maps["rx"] = (low, "foo", [])
-    maps["output"] = (low, "foo", [])
-    tff = defaultdict(int)
-    itv = defaultdict(int)
-
-    i = 0
-    while True:
-        i += 1
+    for _ in range(1000):
         _, t, cons = maps[start]
         signals = [(low, x, start) for x in cons]
-        rxc = 0
         while len(signals) > 0:
             level, target, src = signals.pop(0)
             if target == "rx":
-                if level == low:
-                    return i
-                else:
-                    rxc += 1
-            #print(level, target, src)
+                continue
             if level == low:
                 lc += 1
             else:
@@ -71,25 +58,10 @@ def part_one(inp):
                     else:
                         for con in ccons:
                             signals.append((high, con, target))
-                    if target == "sq" and level == high:
-                        #print(src, i-tff[src])
-                        itv[src] = i - tff[src]
-                        if all([itv[x] > 0 for x in ["fv", "kk", "vt", "xr"]]):
-                            print(itv)
-                            from math import lcm
-                            return lcm(*itv.values())
-                        tff[src] = i
-
-
                 case _:
                     continue
             maps[target] = (cstate, ctype, ccons)
-        if i % 100000 == 0:
-            print(":(")
-            #print(i)
         
-    
-
     print(lc, hc)
     return lc * hc
 
@@ -182,14 +154,9 @@ def part_two(inp):
                 case _:
                     continue
             maps[target] = (cstate, ctype, ccons)
-        if i % 100000 == 0:
-            print(":(")
-            #print(i)
-        
-    
 
-    print(lc, hc)
-    return lc * hc
+
+
 
 
 
@@ -197,13 +164,5 @@ def part_two(inp):
 
 if __name__ == "__main__":
     inp = get_input(2023, 20)
-    #test = """broadcaster -> a
-#%a -> inv, con
-#&inv -> b
-#%b -> con
-#&con -> output""".splitlines()
-    #if test != [""]:
-        #part_two(test)
-
-    ans = part_one(inp)
-    #submit(2023, 20, 1, ans)
+    part_one(inp)
+    part_two(inp)
