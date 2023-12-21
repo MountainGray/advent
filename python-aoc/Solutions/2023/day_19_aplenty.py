@@ -71,7 +71,7 @@ def part_two(inp):
         path = path + [key]
         if key == "A":
             winranges.append(constraints)
-            print(key, constraints, path)
+            #print(key, constraints, path)
             return
         elif key == "R":
             return
@@ -128,12 +128,9 @@ def part_two(inp):
 
     recur_rdict("in", constraints)
 
-    print()
-    print()
-    for wr in winranges:
-        print(wr)
 
     ans = 0
+    print("Summin")
     for wr in winranges:
         tmp = 1
         for low, high in wr:
@@ -143,6 +140,6 @@ def part_two(inp):
 
 
 if __name__ == "__main__":
-    inp = get_input(2023, 19, split_char="\n\n")
-    part_two(inp)
+    inp = get_input(2023, 19, filename="19_evil.in", split_char="\n\n")
+    #part_two(inp)
     part_two(inp)
