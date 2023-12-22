@@ -7,7 +7,7 @@ Intended to be used as `from advent.helpers import *` while solving, ofc cleanin
 # Imports, some for namespace, some for type hints
 
 from typing import List, Tuple, Dict, Set, Union, Any, Annotated, Iterator
-from itertools import product
+from itertools import product, chain
 from collections import defaultdict
 from functools import reduce, cache
 from pprint import pprint
@@ -49,7 +49,7 @@ def iter_neigbours(dim: int) -> List[Tuple[int,...]]:
     return list(product([-1, 0, 1], repeat=dim))
 
 def iter_ud_neigbours(dim: int) -> List[Tuple[int,...]]:
-    '''Returns a list of neighbours cells for a given grid of n dimensions'''
+    '''Returns a list of Von Neumann neighbours (UDLR) for a given grid of n dimensions'''
     return list(filter(lambda x: 0 in x, list(product([-1, 0, 1], repeat=dim))))
 
 def grid_neigbours(pos: Tuple[int, ...]) -> List[Tuple[int,...]]:

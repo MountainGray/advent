@@ -1,5 +1,5 @@
 from advent import get_input, solution_timer
-from advent.helpers import defaultdict, grid_neigbours
+from advent.helpers import defaultdict, grid_4_neigbours
 
 @solution_timer(2023, 3, 1)
 def part_one(inp):
@@ -17,7 +17,7 @@ def part_one(inp):
                 group = True
                 if not valid:
                     # look in nearby cells for for a symbol
-                    for (i, j) in grid_neigbours((x,y)):
+                    for (i, j) in grid_4_neigbours((x,y)):
                         if inp[(i,j)] != '.' and not inp[(i,j)].isnumeric():
                             valid = True
                             break
@@ -55,7 +55,7 @@ def part_two(inp):
                 part_val = part_val * 10 + int(char)
                 group = True
                 # look in nearby cells for for a symbol
-                for (i, j) in grid_neigbours((x,y)):
+                for (i, j) in grid_4_neigbours((x,y)):
                     if inp[(i,j)] == '*':
                         lgear.add((i,j))
             else:
