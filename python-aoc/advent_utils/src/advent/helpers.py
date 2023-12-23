@@ -44,6 +44,12 @@ def print_grid(grid):
     for i in grid:
         print(i)
 
+def iter_grid(grid: List[List[Any]]) -> Iterator[Tuple[int, int, Any]]:
+    '''Iterates over a grid, yielding x, y, value'''
+    for y, row in enumerate(grid):
+        for x, value in enumerate(row):
+            yield x, y, value
+
 def iter_neigbours(dim: int) -> List[Tuple[int,...]]:
     '''Returns a list of neighbours cells for a given grid of n dimensions'''
     return list(product([-1, 0, 1], repeat=dim))

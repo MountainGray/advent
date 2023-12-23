@@ -18,7 +18,7 @@ def solution_timer(year: int, day: int, part: int):
                     console.print("[red]No solution found[/red]")
 
                 diff = (time.perf_counter() - start) * 1000  # in milliseconds
-            except (ValueError, ArithmeticError):
+            except Exception:
                 console.print_exception()
             else:
                 console.print(f"[green]{prefix}[white] {solution} [/white][yellow]{diff:.2f}ms[/yellow][/green]")
