@@ -1,4 +1,4 @@
-from advent import get_input, solution_timer, submit
+from advent import get_input, solution_timer
 from advent.helpers import *
 # fix recur depth
 import sys
@@ -76,8 +76,6 @@ def part_two(inp):
 
     deltas = [(0,1), (0,-1), (1,0), (-1,0)]
     
-    print("nodes")
-    print(len(nodes))
     for n in nodes:
         x, y = n
         for dx,dy in deltas:
@@ -124,48 +122,7 @@ def part_two(inp):
     return recur_mp((1,0), 0, [(1,0)])
 
 
-    
-                
-
-
-
-    
-
-    return mpos[(mx-2, my-1)]
-
 if __name__ == "__main__":
     inp = get_input(2023, 23)
-    test = """#.#####################
-#.......#########...###
-#######.#########.#.###
-###.....#.>.>.###.#.###
-###v#####.#v#.###.#.###
-###.>...#.#.#.....#...#
-###v###.#.#.#########.#
-###...#.#.#.......#...#
-#####.#.#.#######.#.###
-#.....#.#.#.......#...#
-#.#####.#.#.#########v#
-#.#...#...#...###...>.#
-#.#.#v#######v###.###v#
-#...#.>.#...>.>.#.###.#
-#####v#.#.###v#.#.###.#
-#.....#...#...#.#.#...#
-#.#########.###.#.#.###
-#...###...#...#...#.###
-###.###.#.###v#####v###
-#...#...#.#.>.>.#.>.###
-#.###.###.#.###.#.#v###
-#.....###...###...#...#
-#####################.#""".splitlines()
-    #if test != [""]:
-        #part_one(test)
-
-    #ans = part_one(inp)
-    #submit(2023, 23, 1, ans)
-    
-
-    if test != [""]:
-        part_two(test)
-    ans = part_two(inp)
-    submit(2023, 23, 2, ans)
+    part_one(inp)
+    part_two(inp)
