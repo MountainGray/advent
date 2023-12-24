@@ -1,5 +1,5 @@
 year = 2023
-day = 23
+day = 24
 tp = f'''from advent import get_input, solution_timer, submit
 from advent.helpers import *
 
