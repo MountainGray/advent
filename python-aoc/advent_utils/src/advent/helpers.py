@@ -12,6 +12,8 @@ from collections import defaultdict
 from functools import reduce, cache
 from pprint import pprint
 import numpy as np
+import networkx as nx
+from networkx.algorithms.connectivity.cuts import minimum_edge_cut
 
 
 # Strucutres
@@ -38,6 +40,8 @@ E = (1, 0)
 W = (-1, 0)
 
 # Functions
+def prod(foo):
+    return reduce(lambda x, y: x*y, foo)
 
 def print_grid(grid):
     '''Prints out a 2D grid, no assumptions about the value type'''

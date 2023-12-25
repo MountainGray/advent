@@ -1,6 +1,7 @@
 import cProfile
 import pstats
 import time
+import subprocess
 from typing import Callable, Literal
 from advent.console import console
 
@@ -16,6 +17,8 @@ def solution_timer(year: int, day: int, part: int):
 
                 if solution is None:
                     console.print("[red]No solution found[/red]")
+                else:
+                    subprocess.run(["pbcopy"], input=str(solution), encoding="utf-8")
 
                 diff = (time.perf_counter() - start) * 1000  # in milliseconds
             except Exception:

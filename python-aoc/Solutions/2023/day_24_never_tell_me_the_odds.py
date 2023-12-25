@@ -1,6 +1,7 @@
 from advent import get_input, solution_timer
 from itertools import combinations
-from z3 import *
+import numpy as np
+from z3 import Solver, Real, sat
 
 
 mn = 200000000000000
@@ -16,20 +17,21 @@ def part_one(inp):
 
     ans = 0 
     for i, j in combinations(range(len(hail)), 2):
-        print(i, j)
         h1px, h1py, h1pz, h1vx, h1vy, h1vz = hail[i]
         h2px, h2py, h2pz, h2vx, h2vy, h2vz = hail[j]
-        s = Solver()
-        t = Real("t")
-        s.add(t >= 0)
-        s.add(h1px + h1py + h1vx*t + h1vy*t == h2px + h2py + h2vx*t + h2vy*t)
-        if s.check() == sat:
-            t = s.model()[t]
-            print(t)
-            t = t.as_decimal(prec=10)
-            print(t)
-            if mn <= h1px + h1vx*t <= mx and mn <= h1py + h1vy*t <= mx:
-                ans += 1
+        A = np.array([[h1px, h1py], [h1px + h1vx, h1py + h1vy]])
+        B = np.array([[h2px, h2py], [h2px + h2vx, h2py + h2vy]])
+
+        A_diff = A[0] - A[1]
+        B_diff = B[0] - B[1]
+        div = np.linalg.det([A_diff, B_diff])
+        if div == 0:
+            continue
+        d = (np.linalg.det([A[0], A[1]]) * B_diff - np.linalg.det([B[0], B[1]]) * A_diff) / div
+        x, y = d
+        if mn <= x <= mx and mn <= y <= mx:
+            ans += 1
+
     return ans
 
 
@@ -65,5 +67,5 @@ def part_two(inp):
 
 if __name__ == "__main__":
     inp = get_input(2023, 24)
-    #part_one(inp)
+    part_one(inp)
     part_two(inp)
