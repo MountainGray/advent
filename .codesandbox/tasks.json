@@ -4,9 +4,9 @@
 
   // These tasks can be run from CodeSandbox. Running one will open a log in the app.
   "tasks": {
-    "": {
-      "name": "",
-      "command": "",
+    "install python dependancies": {
+      "name": "install python dependancies",
+      "command": "pip install -e python-aoc/advent_utils",
       "runAtStart": true
     }
   }
