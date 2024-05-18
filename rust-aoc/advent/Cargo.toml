@@ -4,5 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-aoc-util = {path = "../aoc-util"}
+aoc-util = { path = "../aoc-util" }
+serde_json = "1.0"
+md5 = "0.7.0"
 num = "0.4.1"
+serde = "1.0.202"

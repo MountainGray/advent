@@ -1,11 +1,18 @@
 use aoc_util::day_input;
+use serde::{Deserialize, Serialize};
+use serde_json::Result;
 use std::env;
 
-fn main() {
-    let _args: Vec<String> = env::args().collect();
+#[derive(Serialize, Deserialize)]
+struct ProblemInput {
+    year: i32,
+    day: i32,
+    input: String,
+}
 
-    use advent::year_2015::day02::*;
-    let input = day_input(2015, 2);
+fn main() {
+    use advent::year_2015::day04::*;
+    let input = day_input(2015, 4);
     let input = parse(&input);
     let part1 = part_one(&input).to_string();
     let part2 = part_two(&input).to_string();
