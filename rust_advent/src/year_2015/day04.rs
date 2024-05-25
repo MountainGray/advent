@@ -1,12 +1,6 @@
 use md5::Digest;
 use std::collections::HashSet;
 
-#[derive(Eq, Hash, PartialEq, Clone)]
-struct Santa {
-    x: i32,
-    y: i32,
-}
-
 pub fn parse(input: &str) -> String {
     input.trim().to_string()
 }
