@@ -1,4 +1,4 @@
 [workspace]
 resolver = "2"
-members = ["aoc-util", "rust_advent"]
-default-members = ["aoc-util"]
+members = ["aoc-util", "rust-aoc"]
+default-members = ["rust-aoc"]
