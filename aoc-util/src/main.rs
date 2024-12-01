@@ -27,12 +27,10 @@ pub struct AdventTui {
 
 fn main() -> io::Result<()> {
     let mut terminal = tui::init()?;
-    //println!("{}", manager::get_input(2017, 2));
     let app_result = AdventTui::default().run(&mut terminal);
     tui::restore()?;
     app_result
 }
-
 impl AdventTui {
     pub fn run(&mut self, terminal: &mut tui::Tui) -> io::Result<()> {
         while !self.exit {

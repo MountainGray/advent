@@ -4,7 +4,7 @@ Different somewhat generic helper functions and structures
 Intended to be used as `from advent.helpers import *` while solving, ofc cleaning up later
 """
 
-from collections import defaultdict
+from collections import defaultdict, Counter
 from functools import reduce, cache
 from itertools import product, chain
 import numpy as np
@@ -108,3 +108,9 @@ def rotate_grid_cw(grid: List[List[Any]]) -> List[List[Any]]:
 def rotate_grid_ccw(grid: List[List[Any]]) -> List[List[Any]]:
     """Rotates a grid 90 degrees counter clockwise"""
     return list(map(list, zip(*grid)))[::-1]
+
+def rot_chr(c, v, m = 26):
+    if c.islower():
+        return chr((((ord(c)-97) + v) % m) + 97)
+    else: 
+        return chr((((ord(c)-65) + v) % m) + 65)
