@@ -12,15 +12,11 @@ fn read_file(filename: &str) -> io::Result<String> {
 
 use rust_aoc::day1::{part1, part2};
 use std::time::Instant;
-
+use aoc_util::day_input;
 fn main() {
-    let inp = read_file("input/2024/day1.txt");
-    match inp {
-        Ok(val) => {
-            let p1 = part1(&val);
-            let p2 = part2(&val);
-            println!("p1: {}\n p2: {}", p1, p2);
-        }
-        Err(e) => println!("error: {}", e),
-    }
+    let inp = day_input(2024, 1);
+    println!("input len: {}", (&inp).lines().count());
+    let p1 = part1(&inp);
+    let p2 = part2(&inp);
+    println!("p1: {}\n p2: {}", p1, p2);
 }
