@@ -1,6 +1,8 @@
 # advent cookie
 .cookie
 
+.direnv
+
 # python
 *.egg_info/
 *.egg
