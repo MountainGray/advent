@@ -40,6 +40,10 @@
             openssl
             pkg-config
             libiconv
+            (python312.withPackages (python-pkgs: with python-pkgs; [
+              numpy
+            ]))
+            libcxx
           ];
 
           # Environment variables
