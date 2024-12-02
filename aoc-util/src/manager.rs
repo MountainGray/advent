@@ -38,7 +38,10 @@ fn load_input(year: u16, day: u8) -> String {
     let directories = get_input_directory(year, day);
     fs::create_dir_all(directories).expect("Failed to make directiories");
     let input_url = format!("https://adventofcode.com/{}/day/{}/input", year, day);
-    let cookie = format!("session={};User-Agent=github.com/jacobgnewman/advent/tree/master/rust-aoc/aoc by jacobgnewman001@gmail.com",get_credentials());
+    let cookie = format!(
+        "session={};User-Agent=github.com/jacobgnewman/advent/ by jacobgnewman001@gmail.com",
+        get_credentials()
+    );
 
     let client = Client::new();
     let res = client.get(input_url).header(COOKIE, cookie).send();

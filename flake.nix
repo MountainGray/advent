@@ -16,7 +16,7 @@
       overlays = [
         rust-overlay.overlays.default
         (final: prev: {
-          rustToolchain = final.rust-bin.stable.latest.default;
+          rustToolchain = final.rust-bin.nightly.latest.default;
         })
       ];
 
@@ -38,6 +38,7 @@
             jq
             nixpkgs-fmt
             openssl
+            openssl_3
             pkg-config
             libiconv
             (python312.withPackages (python-pkgs: with python-pkgs; [
@@ -46,9 +47,12 @@
             libcxx
           ];
 
+          LD_LIBRARY_PATH = "${pkgs.openssl.out}/lib";
+
           # Environment variables
           env = {
             RUST_BACKTRACE = "1";
+            PKG_CONFIG_PATH="${pkgs.openssl.dev}/lib/pkgconfig";
           };
 
           # A hook run every time you enter the environment

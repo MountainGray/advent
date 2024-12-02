@@ -20,6 +20,7 @@ def solution_timer(year: int, day: int, part: int):
                 else:
                     print(solution)
                     # subprocess.run(["pbcopy"], input=str(solution), encoding="utf-8")
+                    subprocess.run(["wl-copy"], input=str(solution), encoding="utf-8")
 
                 diff = (time.perf_counter() - start) * 1000  # in milliseconds
             except Exception:

@@ -1098,6 +1098,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "rdxsort"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "75963a5f70eb99b7a82bcf70946429fc3f82c1ca6718609976622c343750c169"
+
+[[package]]
 name = "redox_syscall"
 version = "0.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1182,6 +1188,7 @@ dependencies = [
  "aoc-util",
  "criterion",
  "itertools 0.13.0",
+ "rdxsort",
 ]
 
 [[package]]

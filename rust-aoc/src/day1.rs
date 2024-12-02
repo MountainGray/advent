@@ -1,30 +1,33 @@
+use rdxsort::*;
 use std::iter::zip;
 
 pub fn part1(input: &str) -> u32 {
-    let mut va = [0;1000];
-    let mut vb = [0;1000];
+    let mut va = [0; 1000];
+    let mut vb = [0; 1000];
 
     for i in 0..1000 {
-        va[i] = input[(i*14)..(i*14 + 5)].parse::<u32>().unwrap();
-        vb[i] = input[(i*14 + 8)..(i*14 + 13)].parse::<u32>().unwrap();
+        va[i] = input[(i * 14)..(i * 14 + 5)].parse::<u32>().unwrap();
+        vb[i] = input[(i * 14 + 8)..(i * 14 + 13)].parse::<u32>().unwrap();
     }
 
-    va.sort();
-    vb.sort();
+    va.rdxsort();
+    vb.rdxsort();
 
-    zip(va.iter(), vb.iter()).map(|(a, b)| (a.abs_diff(*b))).sum()
+    zip(va.iter(), vb.iter())
+        .map(|(a, b)| (a.abs_diff(*b)))
+        .sum()
 }
 
 pub fn part2(input: &str) -> u32 {
-    let mut va = [0;1000];
-    let mut vb = [0;1000];
+    let mut va = [0; 1000];
+    let mut vb = [0; 1000];
 
     for i in 0..1000 {
-        va[i] = input[(i*14)..(i*14 + 5)].parse::<u32>().unwrap();
-        vb[i] = input[(i*14 + 8)..(i*14 + 13)].parse::<u32>().unwrap();
+        va[i] = input[(i * 14)..(i * 14 + 5)].parse::<u32>().unwrap();
+        vb[i] = input[(i * 14 + 8)..(i * 14 + 13)].parse::<u32>().unwrap();
     }
 
-    let mut ftable = [0;100000];
+    let mut ftable = [0; 100000];
 
     for x in vb {
         ftable[x as usize] += 1;
@@ -34,12 +37,12 @@ pub fn part2(input: &str) -> u32 {
 }
 
 pub fn parse(input: &str) {
-    let mut va = [0;1000];
-    let mut vb = [0;1000];
+    let mut va = [0; 1000];
+    let mut vb = [0; 1000];
 
     for i in 0..1000 {
-        va[i] = input[(i*14)..(i*14 + 5)].parse::<u32>().unwrap();
-        vb[i] = input[(i*14 + 8)..(i*14 + 13)].parse::<u32>().unwrap();
+        va[i] = input[(i * 14)..(i * 14 + 5)].parse::<u32>().unwrap();
+        vb[i] = input[(i * 14 + 8)..(i * 14 + 13)].parse::<u32>().unwrap();
     }
 }
 

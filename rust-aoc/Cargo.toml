@@ -17,3 +17,4 @@ harness = false
 [dependencies]
 aoc-util = { path = "../aoc-util" }
 itertools = "0.13.0"
+rdxsort = "0.3.0"
