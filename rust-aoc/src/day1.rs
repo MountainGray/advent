@@ -1,6 +1,7 @@
 use rdxsort::*;
 use std::iter::zip;
 
+#[aoc(day1, part1)]
 pub fn part1(input: &str) -> u32 {
     let mut va = [0; 1000];
     let mut vb = [0; 1000];
@@ -18,6 +19,7 @@ pub fn part1(input: &str) -> u32 {
         .sum()
 }
 
+#[aoc(day1, part2)]
 pub fn part2(input: &str) -> u32 {
     let mut va = [0; 1000];
     let mut vb = [0; 1000];
