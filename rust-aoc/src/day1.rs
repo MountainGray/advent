@@ -1,5 +1,7 @@
-use rdxsort::*;
+//use rdxsort::*;
 use std::iter::zip;
+
+// TODO: impl radix sort fast
 
 #[aoc(day1, part1)]
 pub fn part1(input: &str) -> u32 {
@@ -11,8 +13,8 @@ pub fn part1(input: &str) -> u32 {
         vb[i] = input[(i * 14 + 8)..(i * 14 + 13)].parse::<u32>().unwrap();
     }
 
-    va.rdxsort();
-    vb.rdxsort();
+    va.sort();
+    vb.sort();
 
     zip(va.iter(), vb.iter())
         .map(|(a, b)| (a.abs_diff(*b)))
@@ -46,9 +48,4 @@ pub fn parse(input: &str) {
         va[i] = input[(i * 14)..(i * 14 + 5)].parse::<u32>().unwrap();
         vb[i] = input[(i * 14 + 8)..(i * 14 + 13)].parse::<u32>().unwrap();
     }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::{part1, part2};
 }

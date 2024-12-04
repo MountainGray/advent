@@ -2,7 +2,9 @@
   description = "advent nix dependancy hell";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs = {
+      url = "github:nixos/nixpkgs/nixos-unstable";
+    };
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,7 +40,6 @@
             jq
             nixpkgs-fmt
             openssl
-            openssl_3
             pkg-config
             libiconv
             (python312.withPackages (python-pkgs: with python-pkgs; [
@@ -47,17 +48,18 @@
             libcxx
           ];
 
-          LD_LIBRARY_PATH = "${pkgs.openssl.out}/lib";
 
           # Environment variables
           env = {
             RUST_BACKTRACE = "1";
+            LD_LIBRARY_PATH = "${pkgs.openssl.out}/lib";
+            # OPENSSL_DIR = "${pkgs.openssl.dev}"; # this messed things up?
             PKG_CONFIG_PATH="${pkgs.openssl.dev}/lib/pkgconfig";
           };
 
           # A hook run every time you enter the environment
           shellHook = ''
-            echo "merry xmas"
+            echo "Merry Xmas"
           '';
         };
       });

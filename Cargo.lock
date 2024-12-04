@@ -1220,6 +1220,7 @@ dependencies = [
  "criterion",
  "itertools 0.13.0",
  "rdxsort",
+ "regex",
 ]
 
 [[package]]

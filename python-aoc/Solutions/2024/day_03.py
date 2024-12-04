@@ -1,6 +1,5 @@
 from advent import get_input, solution_timer, submit
 from advent.helpers import *
-
 import re
 
 @solution_timer(2024, 3, 1)
@@ -12,7 +11,6 @@ def part_one(inp: list[str]):
             x, y = map(int, j)
             ans += x * y
     return ans
-
 
 @solution_timer(2024, 3, 1)
 def part_two(inp: list[str]):

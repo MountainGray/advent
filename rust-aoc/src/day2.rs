@@ -1,5 +1,6 @@
 use itertools::all;
 
+#[aoc(day2, part1)]
 pub fn part1(input: &str) -> u32 {
     let numvs = input.lines().map(|l| {
         l.split(" ")
@@ -35,6 +36,7 @@ pub fn part1(input: &str) -> u32 {
     ans
 }
 
+#[aoc(day2, part2)]
 pub fn part2(input: &str) -> u32 {
     let numvs = input.lines().map(|l| {
         l.split(" ")
@@ -56,9 +58,4 @@ pub fn part2(input: &str) -> u32 {
         }
     }
     ans
-}
-
-#[cfg(test)]
-mod tests {
-    use super::{part1, part2};
 }
