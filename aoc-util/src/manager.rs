@@ -12,7 +12,7 @@ fn get_credentials() -> String {
 
 fn get_input_path(year: u16, day: u8) -> PathBuf {
     let mut path = std::env::current_dir().expect("Can't fetch current dir");
-    path.push(format!("input/{}/{:02}/input.txt", year, day));
+    path.push(format!("input/{}/day{}.txt", year, day));
     path
 }
 

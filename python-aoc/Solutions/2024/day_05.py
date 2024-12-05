@@ -1,13 +1,17 @@
 from advent import get_input, solution_timer
 
-@solution_timer(2024, 5, 1)
-def part_one(inp: list[str]):
+def parse(inp: list[str]) -> tuple[list[tuple[int, int]], str]:
     a, b = inp
     rules= []
     for i in a.split("\n"):
         x,y = i.split("|")
         x,y = int(x), int(y)
         rules.append((x,y))
+    return rules, b
+
+@solution_timer(2024, 5, 1)
+def part_one(inp: list[str]):
+    rules, b = parse(inp)
     
     ans = 0
     for i in b.split("\n"):
@@ -24,12 +28,7 @@ def part_one(inp: list[str]):
 
 @solution_timer(2024, 5, 1)
 def part_two(inp: list[str]):
-    a, b = inp
-    rules= []
-    for i in a.split("\n"):
-        x,y = i.split("|")
-        x,y = int(x), int(y)
-        rules.append((x,y))
+    rules, b = parse(inp)
     
     ans = 0
     for i in b.split("\n"):
