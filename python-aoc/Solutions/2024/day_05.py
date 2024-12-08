@@ -13,10 +13,12 @@ def parse(inp: list[str]) -> tuple[list[tuple[int, int]], str]:
 def part_one(inp: list[str]):
     rules, b = parse(inp)
     
+    
     ans = 0
     for i in b.split("\n"):
         n = [int(x) for x in i.split(",")]
         valid = True
+        
         for (x,y) in rules:
             if x in n and y in n and n.index(x) > n.index(y):
                 valid = False
