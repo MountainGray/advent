@@ -53,16 +53,14 @@ pub fn part2(input: &str) -> u32 {
     for i in 0..(N - 1) {
         for j in 0..(N - 1) {
             let idx = i * N + j;
-            if i < N - 3 {
-                if j < N - 3 {
-                    let d = [inp[idx], inp[idx + N + 1], inp[idx + N * 2 + 2]];
-                    if !(d == "MAS".as_bytes() || d == "SAM".as_bytes()) {
-                        continue;
-                    }
-                    let d2 = [inp[idx + 2], inp[idx + N + 1], inp[idx + N * 2]];
-                    if d2 == "MAS".as_bytes() || d2 == "SAM".as_bytes() {
-                        ans += 1;
-                    }
+            if i < N - 3 && j < N - 3 {
+                let d = [inp[idx], inp[idx + N + 1], inp[idx + N * 2 + 2]];
+                if !(d == "MAS".as_bytes() || d == "SAM".as_bytes()) {
+                    continue;
+                }
+                let d2 = [inp[idx + 2], inp[idx + N + 1], inp[idx + N * 2]];
+                if d2 == "MAS".as_bytes() || d2 == "SAM".as_bytes() {
+                    ans += 1;
                 }
             }
         }

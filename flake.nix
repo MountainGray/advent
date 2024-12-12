@@ -42,8 +42,13 @@
             openssl
             pkg-config
             libiconv
-            (python312.withPackages (python-pkgs: with python-pkgs; [
+            (python313.withPackages (python-pkgs: with python-pkgs; [
               numpy
+              rich
+              requests
+              numpy
+              networkx
+              sympy
             ]))
             libcxx
           ];

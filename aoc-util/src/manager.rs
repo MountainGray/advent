@@ -1,24 +1,17 @@
-use reqwest::blocking::Client;
-use reqwest::header::COOKIE;
-use reqwest::StatusCode;
+use chrono::Datelike;
+use dotenv::dotenv;
+use std::env;
 use std::{fs, path::PathBuf};
-
-fn get_credentials() -> String {
-    let mut path = std::env::current_dir().expect("Can't fetch current dir");
-    path.push("input/aoc.session");
-    println!("path = {}", path.display());
-    fs::read_to_string(path).expect("Failed to read from credential file")
-}
 
 fn get_input_path(year: u16, day: u8) -> PathBuf {
     let mut path = std::env::current_dir().expect("Can't fetch current dir");
-    path.push(format!("input/{}/day{}.txt", year, day));
+    path.push(format!("input/{}/day{:02}/input.txt", year, day));
     path
 }
 
 fn get_input_directory(year: u16, day: u8) -> PathBuf {
     let mut path = std::env::current_dir().expect("Can't fetch current dir");
-    path.push(format!("input/{}/{:02}/", year, day));
+    path.push(format!("input/{}/day{:02}/", year, day));
     path
 }
 
@@ -34,30 +27,60 @@ pub fn get_input(year: u16, day: u8) -> String {
     }
 }
 
+fn fetch_aoc_input(year: u16, day: u8) -> Result<String, Box<dyn std::error::Error>> {
+    // Load environment variables from .env file
+    dotenv().ok();
+
+    // Get AOC session cookie from environment variable
+    let session_cookie =
+        env::var("AOC_SESSION_COOKIE").expect("AOC_SESSION_COOKIE must be set in .env file");
+
+    //User-Agent=github.com/jacobgnewman/advent/ by jacobgnewman001@gmail.com
+
+    // Create a client with the session cookie
+    let client = reqwest::blocking::Client::new();
+    let response = client
+        .get(format!(
+            "https://adventofcode.com/{}/day/{}/input",
+            year, day
+        ))
+        .header("Cookie", format!("session={}", session_cookie))
+        .send()?
+        .text()?;
+
+    Ok(response)
+}
+
 fn load_input(year: u16, day: u8) -> String {
     let directories = get_input_directory(year, day);
     fs::create_dir_all(directories).expect("Failed to make directiories");
-    let input_url = format!("https://adventofcode.com/{}/day/{}/input", year, day);
-    let cookie = format!(
-        "session={};User-Agent=github.com/jacobgnewman/advent/ by jacobgnewman001@gmail.com",
-        get_credentials()
-    );
+    //println!("Making request to {} with cookie: {}", input_url, cookie);
 
-    let client = Client::new();
-    let res = client.get(input_url).header(COOKIE, cookie).send();
-
-    match res {
-            Ok(response) => match response.status() {
-                StatusCode::OK => {
-                    let text = response.text().expect("Failed to get text from respones");
-                    let path = get_input_path(year, day);
-                    fs::write(path.clone(), text).expect("Failed to write to file");
-                    fs::read_to_string(path).expect("Failed to read from file")
-                }
-                sc => panic!(
-                    "Could not find corresponding input. Are the day, year, and token correctly set ? Status: {}", sc
-                ),
-            },
-            Err(e) => panic!("Failed to get a response: {}", e),
+    match fetch_aoc_input(year, day) {
+        Ok(input) => {
+            let path = get_input_path(year, day);
+            fs::write(path.clone(), input).expect("Failed to write to file");
+            fs::read_to_string(path).expect("Failed to read from file")
         }
+        Err(e) => {
+            panic!("Failed to get a response: {}", e)
+        }
+    }
+}
+
+struct DayInput {
+    day: u32,
+    input: String,
+}
+
+struct YearInput {
+    year: u32,
+    days: [Option<DayInput>; 26],
+    day: u32,
+}
+
+fn detect_input(year: i32) -> Option<YearInput> {
+    let ctime = chrono::Local::now();
+    let y = ctime.year();
+    None
 }

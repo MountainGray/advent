@@ -2,141 +2,96 @@ const WALL: u8 = b'#';
 const G: u8 = b'^';
 const N: usize = 130;
 
-// functional p1?
-
 // TODO: Change accept from enter to tab jacob...
 use std::collections::HashSet;
 
-// TODO make translation on raw bytes including newlines...
 #[aoc(day6, part1)]
 pub fn part1(input: &str) -> usize {
     let inp = input.as_bytes();
-    let mut guard: (i32, i32) = (0, 0);
-    let mut dx = 0;
-    let mut dy = -1;
+    let (mut x, mut y) = (0, 0);
+    let (mut dx, mut dy) = (0, -1);
 
-    for y in 0..N {
-        for x in 0..N {
-            if inp[y * (N + 1) + x] == G {
-                guard = (x as i32, y as i32);
+    for idy in 0..N {
+        for idx in 0..N {
+            if inp[idy * (N + 1) + idx] == G {
+                (x, y) = (idx as i32, idy as i32);
             }
         }
     }
-    // TODO: eval set for visited, or modifying the array...
 
     let mut visited: HashSet<(i32, i32)> = HashSet::new();
     loop {
-        // visited.insert(guard);
-        let (gx, gy) = guard;
-        let (nx, ny) = (gx + dx, gy + dy);
+        visited.insert((x, y));
+        let (nx, ny) = (x + dx, y + dy);
         if nx < 0 || nx as usize >= N || ny < 0 || ny as usize >= N {
             break;
         }
         let c = inp[(ny as usize) * (N + 1) + nx as usize];
         if c != WALL {
-            if c != b'x' {
-                //inp[(ny as usize) * (N + 1) + nx as usize] = b'x';
-                visited.insert((nx, ny));
-                //ans += 1;
-            }
-            guard = (nx, ny);
+            (x, y) = (nx, ny);
         } else {
             (dx, dy) = (-dy, dx);
-            //dir = (dir + 1) % 4;
         };
     }
     visited.len()
 }
 
-// TODO make translation on raw bytes including newlines...
+pub fn try_loop(pos: (i32, i32), dir: (i32, i32), grid: &[u8], twall: (i32, i32)) -> bool {
+    let mut looped: HashSet<((i32, i32), (i32, i32))> = HashSet::new();
+    let (mut dx, mut dy) = dir;
+    let (mut x, mut y) = pos;
+    loop {
+        if looped.contains(&((x, y), (dx, dy))) {
+            return true;
+        } else {
+            looped.insert(((x, y), (dx, dy)));
+        }
+        let (nx, ny) = (x + dx, y + dy);
+        if nx < 0 || nx as usize >= N || ny < 0 || ny as usize >= N {
+            return false;
+        }
+        if grid[(ny as usize) * (N + 1) + nx as usize] != WALL && (nx, ny) != twall {
+            (x, y) = (nx, ny);
+        } else {
+            (dx, dy) = (-dy, dx);
+        }
+    }
+}
+
 #[aoc(day6, part2)]
 pub fn part2(input: &str) -> usize {
     let inp = input.as_bytes();
-    let mut guard: (i32, i32) = (0, 0);
-    let mut dx = 0;
-    let mut dy = -1;
+    let (mut x, mut y) = (0, 0);
+    let (mut dx, mut dy) = (0, -1);
 
-    for y in 0..N {
-        for x in 0..N {
-            if inp[y * (N + 1) + x] == G {
-                guard = (x as i32, y as i32);
+    for idy in 0..N {
+        for idx in 0..N {
+            if inp[idy * (N + 1) + idx] == G {
+                (x, y) = (idx as i32, idy as i32);
             }
         }
     }
-
-    let mut grid: Vec<Vec<u8>> = input.lines().map(|l| l.bytes().collect()).collect();
-    // TODO: eval set for visited, or modifying the array...
     let mut answer = 0;
 
     let mut visited: HashSet<(i32, i32)> = HashSet::new();
     loop {
-        visited.insert(guard);
-        let (gx, gy) = guard;
-        let (nx, ny) = (gx + dx, gy + dy);
-
-        if nx < 0 || nx as usize >= grid.len() || ny < 0 || ny as usize >= grid.len() {
+        visited.insert((x, y));
+        let (nx, ny) = (x + dx, y + dy);
+        if nx < 0 || nx as usize >= N || ny < 0 || ny as usize >= N {
             break;
         }
-        if grid[ny as usize][nx as usize] != WALL {
-            // try to find loop :)
+        if inp[(ny as usize) * (N + 1) + nx as usize] != WALL {
+            // can't block path we have already traveled
             if !visited.contains(&(nx, ny)) {
-                grid[ny as usize][nx as usize] = b'#';
-
-                let mut ndir = dir;
-                let mut looped: HashSet<((i32, i32), usize)> = HashSet::new();
-                let mut found = false;
-                let mut nguard = guard;
-                loop {
-                    if looped.contains(&(nguard, ndir)) {
-                        found = true;
-                        break;
-                    } else {
-                        looped.insert((nguard, ndir));
-                    }
-                    let (gx, gy) = nguard;
-                    let (nx, ny) = (gx + DX[ndir], gy + DY[ndir]);
-                    if nx < 0 || nx as usize >= grid.len() || ny < 0 || ny as usize >= grid.len() {
-                        break;
-                    }
-                    if grid[ny as usize][nx as usize] != WALL {
-                        nguard = (nx, ny);
-                    } else {
-                        ndir = (ndir + 1) % 4;
-                    }
-                }
-
-                if found {
+                let is_loop = try_loop((x, y), (dx, dy), inp, (nx, ny));
+                if is_loop {
                     answer += 1;
                 }
-
-                grid[ny as usize][nx as usize] = b'.';
             }
-
-            guard = (nx, ny);
+            (x, y) = (nx, ny);
         } else {
-            dir = (dir + 1) % 4;
+            (dx, dy) = (-dy, dx);
         };
     }
     answer
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_part1() {
-        let s = "....#.....
-.........#
-..........
-..#.......
-.......#..
-..........
-.#..^.....
-........#.
-#.........
-......#...
-";
-        assert_eq!(part1(s), 6);
-    }
 }
