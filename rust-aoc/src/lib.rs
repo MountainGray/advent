@@ -10,6 +10,8 @@ pub mod day11;
 //pub mod day12;
 pub mod day13;
 pub mod day14;
+pub mod day15;
+pub mod day17;
 pub mod day2;
 pub mod day3;
 pub mod day4;
@@ -111,5 +113,22 @@ impl NumberExtraction for String {
 
     fn extract_floats(&self) -> Vec<f64> {
         self.as_str().extract_floats()
+    }
+}
+
+pub trait Grid<'a, T: 'a> {
+    fn enum_grid(&'a self) -> impl Iterator<Item = (usize, usize, &'a T)>;
+}
+
+//impl Vec<&str> {}
+
+impl<'a, T: 'a> Grid<'a, T> for Vec<Vec<T>> {
+    fn enum_grid(&'a self) -> impl Iterator<Item = (usize, usize, &'a T)>
+    where
+        T: 'a,
+    {
+        self.iter()
+            .enumerate()
+            .flat_map(|(idy, l)| l.iter().enumerate().map(move |(idx, v)| (idx, idy, v)))
     }
 }
