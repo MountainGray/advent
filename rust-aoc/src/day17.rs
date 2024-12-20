@@ -84,7 +84,7 @@ fn sol(i: u64) -> u64 {
 }
 
 pub fn part1() {
-    let x = (1490000000..u64::MAX)
+    let x = ((2_u64.pow(45))..u64::MAX)
         .into_par_iter()
         .map(sol)
         .find_any(|x| *x != 0)

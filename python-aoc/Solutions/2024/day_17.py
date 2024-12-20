@@ -69,32 +69,31 @@ def search_range(inp):
     #print("D")
     return 0
 
+from z3 import *
+
 @solution_timer(2024, 17, 1)
-def part_one(inp: list[str]):
-    # Register A: 33940147
-    # Register B: 0
-    # Register C: 0
-    instrs = inp
+def part_one(inp: list[int]):
+    s = Optimize()
+    a=BitVec("a", 64)
+    orig = a
+    b = 0
+    c = 0
+    for i in inp: 
+        print(f"{i},", end="", flush=True)
+        b = (a & 7) ^ 5
+        c = a / (1 << b)
+        b = b ^ 6 ^ c
+        s.add(b & 7 == i)
+        a >>= 3
+    s.add(a == 0)
+    #s.minimize(orig)
+    print(s.check())
+    m = s.model()
+    return m[orig].as_long()
     
-    #for i in range(33940147, 1000000000000):
-    # for i in range(1000000000000):
-    #     if i % 1000000 == 0:
-    #         print(i)
-    #     if sol(i, instrs):
-    #         return i
-    with Pool(12) as p:
-        ranges = [((i, i+1000000),instrs) for i in range(0, 1000000000000, 1000000)]
-        print(len(ranges))
-        vals = p.map(search_range, ranges)
-        print("DONE")
-        print(vals)
-        v = [i for i in vals if i != 0]
-        return v[0]
-    #     p.map(sol, range(33940147, 1000000000000)))
 
 
-# 31050000
-
+    
 
 @solution_timer(2024, 17, 2)
 def part_two(inp: list[str]):
@@ -102,8 +101,6 @@ def part_two(inp: list[str]):
 
 if __name__ == "__main__":
     inp = get_input(2024, 17, split_char="\n\n")
-    # ans = part_one([int(i) for i in "0,3,5,4,3,0".split(",")])
-    # print(ans)
     ans = part_one([int(i) for i in "2,4,1,5,7,5,1,6,4,2,5,5,0,3,3,0".split(",")])
-    submit(2024, 17, 2, ans)
+    #submit(2024, 17, 2, ans)
     #part_two(inp)

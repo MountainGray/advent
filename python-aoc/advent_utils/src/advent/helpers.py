@@ -15,6 +15,9 @@ from typing import List, Tuple, Dict, Set, Union, Any, Annotated, Iterator
 import sympy as sp
 import re
 
+def nums(s):
+    nums = re.compile(r"\d+")
+    return list(map(int, nums.findall(s)))
 
 # Strucutres
 text_number_tr = {
